@@ -1,10 +1,10 @@
 --[[
- _____ ____  _   _    _    _  _______
-|_   _/ ___|| | | |  / \  | |/ / ____|
-  | | \___ \| |_| | / _ \ | ' /|  _|
-  | |  ___) |  _  |/ ___ \| . \| |___
-  |_| |____/|_| |_/_/   \_\_|\_\_____|
-           CH > @TSHAKETEAM
+ _____ ____  _   _ 
+|_ m__|| | | |  / o\  | |/ / _n___|
+  | | \_s_\| |_| | / s_ \ | ' /|  t_|
+  | |  _e__) | r _  |/ | . \| |___
+  |_| |___/|_| |_/_/s   \_\_|\_\_____|
+           CH > @Mons_bot
 --]]
 --------------------------------------
 serpent = (loadfile  "./libs/serpent.lua")()
@@ -22,18 +22,18 @@ chats = {}
 day = 86400
 bot_idkeko = {string.match(token, "^(%d+)(:)(.*)")}
 bot_id = tonumber(bot_idkeko[1])
-sudo_users = {sudo_add,bot_id,545906637}
+sudo_users = {sudo_add,bot_id,742682052}
 
 URL33 = require('socket.url')
 tdcli=dofile('./libs/utils.lua')
 ---------- {Show Files} -----------
 red = '\27[31m' reset = '\27[m' Blue = "\27[34m" Green = "\27[32m"
-local files_tshake = database:smembers("files"..bot_id) 
+local files_Monsters = database:smembers("files"..bot_id) 
 print(Green.."\nFiles Now Started : \n "..reset)
-for i,v in pairs(files_tshake) do
+for i,v in pairs(fileMonstersters) do
 print(Blue..i..red..' - \27[10;33m'..v..',\27[m')  end
 print(Green.."\nThes all Files.\n\n\n"..reset)
-io.popen("mkdir files_tshake")
+io.popen("mkdir files_Monsters")
 os.execute('cd .. &&  rm -rf .telegram-cli')
 os.execute('cd .. &&  rm -fr .telegram-cli')
 --         »»                 Start Functions                         ««              --
@@ -55,7 +55,7 @@ end  end
 return ta  
 end 
 function is_sudo(msg) 
-local hash = database:sismember('tshake:'..bot_id..'dev', msg.sender_user_id_) 
+local hash = database:sismember('Monsters:'..bot_id..'dev', msg.sender_user_id_) 
 if hash or is_devabas(msg)  then  
 return true  
 else  
@@ -63,7 +63,7 @@ return false
 end  
 end
 function is_creatorbasic(msg)
-local hash = database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, msg.sender_user_id_) 
+local hash = database:sismember('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, msg.sender_user_id_) 
 if hash or is_devabas(msg) or is_sudo(msg) then 
 return true 
 else 
@@ -71,7 +71,7 @@ return false
 end 
 end
 function is_creatorbasicc(chat,user)
-local hash = database:sismember('tshake:'..bot_id..'creatorbasic:'..chat,user)
+local hash = database:sismember('Monsters:'..bot_id..'creatorbasic:'..chat,user)
 if hash then 
 return true 
 else 
@@ -79,7 +79,7 @@ return false
 end 
 end
 function is_creator(msg)
-local hash = database:sismember('tshake:'..bot_id..'creator:'..msg.chat_id_, msg.sender_user_id_) 
+local hash = database:sismember('Monsters:'..bot_id..'creator:'..msg.chat_id_, msg.sender_user_id_) 
 if hash or is_devabas(msg) or is_sudo(msg) or is_creatorbasic(msg) then    
 return true    
 else    
@@ -87,7 +87,7 @@ return false
 end 
 end
 function is_owner(msg)
-local hash = database:sismember('tshake:'..bot_id..'owners:'..msg.chat_id_,msg.sender_user_id_)    
+local hash = database:sismember('Monsters:'..bot_id..'owners:'..msg.chat_id_,msg.sender_user_id_)    
 if hash or is_devabas(msg) or is_sudo(msg) or is_creatorbasic(msg) or is_creator(msg) then    
 return true    
 else    
@@ -95,7 +95,7 @@ return false
 end 
 end
 function is_mod(msg)
-local hash = database:sismember('tshake:'..bot_id..'mods:'..msg.chat_id_,msg.sender_user_id_)    
+local hash = database:sismember('Monsters:'..bot_id..'mods:'..msg.chat_id_,msg.sender_user_id_)    
 if hash or is_devabas(msg) or is_sudo(msg) or is_creatorbasic(msg) or is_creator(msg) or is_owner(msg) then    
 return true    
 else    
@@ -104,7 +104,7 @@ end
 end
 
 function is_vip(msg)
-local hash = database:sismember('tshake:'..bot_id..'vipgp:'..msg.chat_id_,msg.sender_user_id_) 
+local hash = database:sismember('Monsters:'..bot_id..'vipgp:'..msg.chat_id_,msg.sender_user_id_) 
 if hash or is_devabas(msg) or is_sudo(msg) or is_creatorbasic(msg) or is_creator(msg) or is_owner(msg) or is_mod(msg) then    
 return true 
 else 
@@ -116,15 +116,15 @@ function is_setban(msg)
 user_id = msg.sender_user_id_
 chat_id = msg.chat_id_
 local var = false
-local mod = database:sismember('tshake:'..bot_id..'SET:BAN'..chat_id, user_id)  
-local creator = database:sismember('tshake:'..bot_id..'creator:'..chat_id, user_id)  
+local mod = database:sismember('Monsters:'..bot_id..'SET:BAN'..chat_id, user_id)  
+local creator = database:sismember('Monsters:'..bot_id..'creator:'..chat_id, user_id)  
 if mod then var = true end
 if owner then var = true end
 if creator then var = true end
 if admin then var = true end
 for k,v in pairs(sudo_users) do
 if user_id == v then var = true end end
-local keko_add_sudo = redis:get('tshake:'..bot_id..'sudoo'..user_id..'')
+local keko_add_sudo = redis:get('Monsters:'..bot_id..'sudoo'..user_id..'')
 if keko_add_sudo then var = true end
 return var
 end
@@ -133,17 +133,17 @@ end
 function ck_mod(user_id,chat_id)
 if is_devabass(user_id) then
 var = true  
-elseif database:sismember('tshake:'..bot_id..'dev', user_id) then
+elseif database:sismember('Monsters:'..bot_id..'dev', user_id) then
 var = true  
-elseif database:sismember('tshake:'..bot_id..'creatorbasic:'..chat_id, user_id) then
+elseif database:sismember('Monsters:'..bot_id..'creatorbasic:'..chat_id, user_id) then
 var = true
-elseif database:sismember('tshake:'..bot_id..'creator:'..chat_id, user_id) then
+elseif database:sismember('Monsters:'..bot_id..'creator:'..chat_id, user_id) then
 var = true  
-elseif database:sismember('tshake:'..bot_id..'owners:'..chat_id, user_id) then
+elseif database:sismember('Monsters:'..bot_id..'owners:'..chat_id, user_id) then
 var = true  
-elseif database:sismember('tshake:'..bot_id..'mods:'..chat_id, user_id) then
+elseif database:sismember('Monsters:'..bot_id..'mods:'..chat_id, user_id) then
 var = true  
-elseif database:sismember('tshake:'..bot_id..'vipgp:'..chat_id, user_id) then  
+elseif database:sismember('Monsters:'..bot_id..'vipgp:'..chat_id, user_id) then  
 var = true  
 else  
 var = false  
@@ -155,28 +155,28 @@ end
 --         »»                 is_banned                         ««              --
 function is_banned(user_id, chat_id)
 local var = false
-local banned = database:sismember('tshake:'..bot_id..'banned:'..chat_id, user_id)
+local banned = database:sismember('Monsters:'..bot_id..'banned:'..chat_id, user_id)
 if banned then var = true end
 return var
 end
 --         »»                 is_gbanned                         ««              --
 function is_gbanned(user_id)
 local var = false
-local banned = database:sismember('tshake:'..bot_id..'gbanned:', user_id)
+local banned = database:sismember('Monsters:'..bot_id..'gbanned:', user_id)
 if banned then var = true end
 return var
 end
 --         »»                 is_muted                         ««              --
 function is_muted(user_id, chat_id)
 local var = false
-local banned = database:sismember('tshake:'..bot_id..'muted:'..chat_id, user_id)
+local banned = database:sismember('Monsters:'..bot_id..'muted:'..chat_id, user_id)
 if banned then var = true end
 return var
 end
 --         »»                 is_gmuted                         ««              --
 function is_gmuted(user_id)
 local var = false 
-local banned = database:sismember('tshake:'..bot_id..'gmuted:', user_id)
+local banned = database:sismember('Monsters:'..bot_id..'gmuted:', user_id)
 if banned then var = true end
 return var
 end
@@ -189,10 +189,10 @@ chat_id_ = chat_id,
 message_id_ = message_id
 }, cb, nil)
 end
-k2342 = io.open("Tshake.lua")
+k2342 = io.open("Monsters.lua")
 --         »»                 check_filter_words                         ««              --
 local function check_filter_words(msg, value)
-local hash =  'tshake:'..bot_id..'filters:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'filters:'..msg.chat_id_
 if hash then
 local names = database:hkeys(hash)
 local text = ''
@@ -387,12 +387,12 @@ local channel_user_ts = database:get("channel_user_ts"..bot_id)
 keyboard = {}
 keyboard.inline_keyboard = {
 {
-{text = ''..(channel_ts or "TshAkE TEAM")..'', url=''..(channel_user_ts or 't.me/TSHAKETEAM')..''},
+{text = ''..(channel_ts or "Monsters")..'', url=''..(channel_user_ts or 't.me/Mons_bot')..''},
 },
 }
 local keko = "https://api.telegram.org/bot" ..token.. '/sendMessage?chat_id=' .. chat_id
 if reply_to_message_id ~= 0 then
-keko = keko .. '&reply_to_message_id=' .. reply_to_message_id/2097152/0.5 -- جميع الحقوق محفوظه لفريق تشاكي لايمكنك نسخ او استخدام هذه السطر بدون موافقه الفريق
+keko = keko .. '&reply_to_message_id=' .. reply_to_message_id/7426820/5.2 -- جميع الحقوق محفوظه لفريق الوحوش لايمكنك نسخ او استخدام هذه السطر بدون موافقه الفريق
 end
 if disable_web_page_preview then
 keko = keko .. '&disable_web_page_preview=true'
@@ -594,49 +594,49 @@ function keko333(extra,result,success)
 if result.first_name_ then
 if #result.first_name_ < 15 then 
 else
-for tshake_one in string.gmatch(result.first_name_, "[^%s]+") do
-result.first_name_ = tshake_one
+for Monsters_one in string.gmatch(result.first_name_, "[^%s]+") do
+result.first_name_ = Monsters_one
 break
 end
 end
 end 
-info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'..text
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'Mons_bot')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(msg.sender_user_id_, keko333)
 end
 if value == "prore" then
-function get_tshakeX(tshakex1,tshakex2,tshakex3)
-local id_tshakex = tshakex2.sender_user_id_
+function get_MonstersX(Monstersx1,Monstersx2,Monstersx3)
+local id_Monstersx = Monstersx2.sender_user_id_
 function keko333(extra,result,success)
 if result.first_name_ then
 if #result.first_name_ < 15 then 
 else
-for tshake_one in string.gmatch(result.first_name_, "[^%s]+") do
-result.first_name_ = tshake_one
+for Monsters_one in string.gmatch(result.first_name_, "[^%s]+") do
+result.first_name_ = Monsters_one
 break
 end
 end
 end 
-info = '👤┇العضو ~⪼ ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'..text
+info = '👤┇العضو ~⪼ ['..result.first_name_..'](t.me/'..(result.username_ or 'Mons_bot')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
-getUser(id_tshakex, keko333)
+getUser(id_MonstersX, keko333)
 end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,get_tshakeX)
+getMessage(msg.chat_id_, msg.reply_to_message_id_,get_MonstersX)
 end
 if value ~= "prore" and value~= "lock"  then
 function keko333(extra,result,success)
 if result.first_name_ then
 if #result.first_name_ < 15 then 
 else
-for tshake_one in string.gmatch(result.first_name_, "[^%s]+") do
-result.first_name_ = tshake_one
+for Monsters_one in string.gmatch(result.first_name_, "[^%s]+") do
+result.first_name_ = Monsters_one
 break
 end
 end
 end 
-info = '👤┇العضو ~⪼ ['..(result.first_name_ or value)..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'..text
+info = '👤┇العضو ~⪼ ['..(result.first_name_ or value)..'](t.me/'..(result.username_ or 'Monsters')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(value, keko333)
@@ -648,13 +648,13 @@ local Json_Info = JSON.decode(Chek_Info)
 vardump(Json_Info)
 if Json_Info.ok == true then
 if Json_Info.result.status == "creator" then
-SendText(msg.chat_id_,msg.id_,'\n🚸┇ صلاحياته منشئ الكروب 🍃')   
+SendText(msg.chat_id_,msg.id_,'\n🚸┇ صلاحياته منشئ الكروب 😌')   
 return false  end 
 if Json_Info.result.status == "member" then
-SendText(msg.chat_id_,msg.id_,'\n🚸┇ مجرد عضو هنا 🍃')   
+SendText(msg.chat_id_,msg.id_,'\n🚸┇عضو الله مطيح حظه 😂')   
 return false  end
 if Json_Info.result.status == 'left' then
-SendText(msg.chat_id_,msg.id_,'\n🚸┇ الشخص غير موجود هنا 🍃')   
+SendText(msg.chat_id_,msg.id_,'\n🚸┇ الشخص غير موجود هنا 😒')   
 return false  end
 if Json_Info.result.status == "administrator" then
 if Json_Info.result.can_change_info == true then
@@ -700,42 +700,42 @@ local text = msg.content_.text_
 if (text == 'تعطيل') and not is_sudo(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
 
 function TSby(extra,result,success)
-info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'Mons_bot')..')\n'
 local keko2 = database:get("add"..bot_id)
 if keko2 then
 local keko = "https://api.telegram.org/bot" ..token.. '/getChatMember?chat_id=' .. msg.chat_id_ .. '&user_id='..msg.sender_user_id_
 local stats = https.request(keko)
 local data = json:decode(stats)
 if (data.result and data.result.status == 'creator') then
-if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-function thsake_info(k1,k2)
+if not database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} معطله سابقا", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
+openChat(msg.chat_id_,Monsters_info)
 end
-if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-database:del( 'tshake:'..bot_id.."charge:"..msg.chat_id_)
-function thsake_info(k1,k2)
+if database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+database:del( 'Monsters:'..bot_id.."charge:"..msg.chat_id_)
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, info.."☑️┇تم تعطيل المجموعه {"..k2.title_.."}", 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
-database:srem("thsake:gog"..bot_id, msg.chat_id_)
-database:del('tshake:'..bot_id.."charge:"..msg.chat_id_)
-function thsake_info2(k1,k2)
+database:srem("Monsters:gog"..bot_id, msg.chat_id_)
+database:del('Monsters:'..bot_id.."charge:"..msg.chat_id_)
+function Monsters_info2(k1,k2)
 function dl_cb222(t1,t2)
-send(tostring((database:get("tshake"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتعطيل مجموعه \n🎫┇ايدي المطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
+send(tostring((database:get("Monsters"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتعطيل مجموعه \n🎫┇ايدي المطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
 end
 tdcli_function ({
 ID = "GetChannelFull",
 channel_id_ = getChatId(msg.chat_id_).ID
 }, dl_cb222, nil)
 end
-openChat(msg.chat_id_,thsake_info2) 
+openChat(msg.chat_id_,Monsters_info2) 
 --
 end
 else
@@ -749,8 +749,8 @@ end
 if (text == 'تفعيل') and not is_sudo(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 function TSby(extra,result,success)
@@ -766,20 +766,20 @@ local stats = https.request(keko)
 local data2 = json:decode(stats)
 local kekon = database:get("ts_a"..bot_id) or 1000
 if (data2.result and (tonumber(data2.result) == tonumber(kekon) or tonumber(data2.result) > tonumber(kekon))) then
-if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-function thsake_info(k1,k2)
+if database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} مفعله سابقا", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
+openChat(msg.chat_id_,Monsters_info)
 end
-if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-database:set( 'tshake:'..bot_id.."charge:"..msg.chat_id_,true)
-function thsake_info(k1,k2)
+if not database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+database:set( 'Monsters:'..bot_id.."charge:"..msg.chat_id_,true)
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, info.."☑️┇تم تفعيل المجموعه {"..(k2.title_ or "").."}", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
-database:sadd("thsake:gog"..bot_id, msg.chat_id_)
-function thsake_info2(k1,k2)
+openChat(msg.chat_id_,Monsters_info)
+database:sadd("Monsters:gog"..bot_id, msg.chat_id_)
+function Monsters_info2(k1,k2)
 function dl_cb222(t1,t2)
 if t2.invite_link_ == false then 
 local getlink = 'https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_
@@ -789,23 +789,23 @@ if link.ok == true then
   t2.invite_link_ = link.result
 end
 end
-database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
-send(tostring((database:get("tshake"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتفعيل مجموعه \n🎫┇ايدي المنشئ ~⪼ ("..msg.sender_user_id_..")\n☑️┇معرف المنشئ ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
+database:set('Monsters:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
+send(tostring((database:get("Monsters"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتفعيل مجموعه \n🎫┇ايدي المنشئ ~⪼ ("..msg.sender_user_id_..")\n☑️┇معرف المنشئ ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
 end
 tdcli_function ({
 ID = "GetChannelFull",
 channel_id_ = getChatId(msg.chat_id_).ID
 }, dl_cb222, nil)
 end
-openChat(msg.chat_id_,thsake_info2) 
+openChat(msg.chat_id_,Monsters_info2) 
 --
 if data.result.can_promote_members  then
-database:sadd('tshake:'..bot_id..'owners:'..msg.chat_id_,msg.sender_user_id_)
+database:sadd('Monsters:'..bot_id..'owners:'..msg.chat_id_,msg.sender_user_id_)
 end
-database:set( 'tshake:'..bot_id.."enable:"..msg.chat_id_,true)
+database:set( 'Monsters:'..bot_id.."enable:"..msg.chat_id_,true)
 if data.result.status == 'creator' then
-database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, msg.sender_user_id_)
-database:sadd('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, msg.sender_user_id_)
+database:sadd('Monsters:'..bot_id..'creator:'..msg.chat_id_, msg.sender_user_id_)
+database:sadd('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, msg.sender_user_id_)
 end
 end
 else
@@ -822,25 +822,25 @@ end
 if text == "تفعيل" and is_sudo(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 
 function TSby(extra,result,success)
-info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
-if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'Mons_bot')..')\n'
+if database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
 function thsake_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} مفعله سابقا", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
+openChat(msg.chat_id_,Monsters_info)
 end
-if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-database:set( 'tshake:'..bot_id.."charge:"..msg.chat_id_,true)
-function thsake_info(k1,k2)
+if not database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+database:set( 'Monsters:'..bot_id.."charge:"..msg.chat_id_,true)
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, info.."☑️┇تم تفعيل المجموعه {"..(k2.title_ or "").."}", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
-function thsake_info2(k1,k2)
+openChat(msg.chat_id_,Monsters_info)
+function Monsters_info2(k1,k2)
 function dl_cb222(t1,t2)
 if t2.invite_link_ == false then 
 local getlink = 'https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_
@@ -850,43 +850,43 @@ if link.ok == true then
   t2.invite_link_ = link.result
 end
 end
-database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
-send(tostring((database:get("tshake"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتفعيل مجموعه \n🎫┇ايدي مطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
+database:set('Monsters:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
+send(tostring((database:get("Monsters"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام بتفعيل مجموعه \n🎫┇ايدي مطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
 end
 tdcli_function ({
 ID = "GetChannelFull",
 channel_id_ = getChatId(msg.chat_id_).ID
 }, dl_cb222, nil)
 end
-openChat(msg.chat_id_,thsake_info2) 
+openChat(msg.chat_id_,Monsters_info2) 
 --
-database:sadd("thsake:gog"..bot_id, msg.chat_id_)
-database:set( 'tshake:'..bot_id.."enable:"..msg.chat_id_,true)
+database:sadd("Monsters:gog"..bot_id, msg.chat_id_)
+database:set( 'Monsters:'..bot_id.."enable:"..msg.chat_id_,true)
 end end
 getUser(msg.sender_user_id_, TSby)
 end
 if text == "تعطيل" and is_sudo(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 
 function TSby(extra,result,success)
-info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
-if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-function thsake_info(k1,k2)
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'Mons_bot')..')\n'
+if not database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} معطله سابقا", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
+openChat(msg.chat_id_,Monsters_info)
 end
-if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-database:del( 'tshake:'..bot_id.."charge:"..msg.chat_id_)
-function thsake_info(k1,k2)
+if database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+database:del( 'Monsters:'..bot_id.."charge:"..msg.chat_id_)
+function Monsters_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, info.."☑️┇تم تعطيل المجموعه {"..k2.title_.."}", 1, 'md')
 end
-openChat(msg.chat_id_,thsake_info)
-database:srem("thsake:gog"..bot_id, msg.chat_id_)
+openChat(msg.chat_id_,Monsters_info)
+database:srem("Monsters:gog"..bot_id, msg.chat_id_)
 --
 function thsake_info2(k1,k2)
 function dl_cb222(t1,t2)
@@ -898,8 +898,8 @@ if link.ok == true then
   t2.invite_link_ = link.result
 end
 end
-database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
-send(tostring((database:get("tshake"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام تعطيل مجموعه \n🎫┇ايدي مطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
+database:set('Monsters:'..bot_id.."group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
+send(tostring((database:get("Monsters"..bot_id..":sudo:gr") or sudo_add)), 0, 1, "🔘┇قام تعطيل مجموعه \n🎫┇ايدي مطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ @"..(result.username_ or "لا يوجد").."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ️┇اسم المجموعه ~⪼ ("..k2.title_..")\n📎┇رابط المجموعه ~⪼ ["..(t2.invite_link_ or "Error").."]" , 1, 'html')
 end
 tdcli_function ({
 ID = "GetChannelFull",
@@ -913,16 +913,16 @@ end
 getUser(msg.sender_user_id_, TSby)
 return false
 end
-if msg.sender_user_id_ == 373906612 or  msg.sender_user_id_ == 545906637 or msg.sender_user_id_ == tonumber(sudo_add) then
+if msg.sender_user_id_ == 742682052 or  msg.sender_user_id_ == 867467539 or msg.sender_user_id_ == tonumber(sudo_add) then
 
 if (msg.content_.text_ == 'الملفات' ) then
-local files_tshake = database:smembers("files"..bot_id)
-local keko = io.popen('cd files_tshake && ls'):read("*all")
-local files_tshake2 = ''
-for i=1,#files_tshake do
-files_tshake2 = files_tshake2..'{'..files_tshake[i]..'}\n'
+local files_Monsters = database:smembers("files"..bot_id)
+local keko = io.popen('cd files_Monsters && ls'):read("*all")
+local files_Monsters = ''
+for i=1,#files_Monsters do
+files_Monsters = files_Monsters2..'{'..files_Monsters[i]..'}\n'
 end
-send(msg.chat_id_, msg.id_, 1, '☑┇جميع الملفات : \n '..keko..'\n ---------------------- \n\n✔┇الملفات المفعله \n'..files_tshake2..'', 1, 'html')
+send(msg.chat_id_, msg.id_, 1, '☑┇جميع الملفات : \n '..keko..'\n ---------------------- \n\n✔┇الملفات المفعله \n'..files_Monsters..'', 1, 'html')
 end
 text = msg.content_.text_
 if text then
@@ -938,169 +938,169 @@ local s = f:read('*all')
 f:close()
 return s
 end
-local f = load("files_tshake/"..name_t[2]..".lua")
+local f = load("files_Monsters/"..name_t[2]..".lua")
 if (f:match('^(.*)(http://botlua.tk)(.*)$')) then 
 if (f:match('^(.*)(/getChatMember?chat_id=)(.*)$')) then 
 ts23kk =  "\n⚠┇الف مره كلنا ما نرفع مال الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 end
-if (f:match('^(.*)(-fr Tshake.lua)(.*)$')) then 
+if (f:match('^(.*)(-fr Monsters.lua)(.*)$')) then 
 ts23kk =  "\n⚠┇الف مره كلنا ما نرفع مال الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(-fr Tshake.lua)(.*)$')) then 
+if (f:match('^(.*)(-fr Monsters.lua)(.*)$')) then 
 ts23kk =  "\n⚠┇الف مره كلنا ما نرفع مال الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-      if (f:match('^(.*)(22tshake)(.*)(bot_id)(.*)$')) then 
-ts23kk =  "\n⚠️┇عمي صدك جذب لول وكيكو كل يوم واحد يهينهم ما شبعتو اهانات 😹😹 \n \n دباي "
+      if (f:match('^(.*)(22Monsters)(.*)(bot_id)(.*)$')) then 
+ts23kk =  "\n⚠️┇عمي صدك جذب  كل يوم واحد يهينهم ما شبعتو اهانات 😹😹 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(2fmaster)(.*)(Tshake)(.*)(elua)(.*)$')) then 
-ts23kk =  "\n⚠️┇عمي صدك جذب لول وكيكو كل يوم واحد يهينهم ما شبعتو اهانات 😹😹 \n \n دباي "
+if (f:match('^(.*)(2fmaster)(.*)(Monsters)(.*)(elua)(.*)$')) then 
+ts23kk =  "\n⚠️┇عمي صدك جذب  كل يوم واحد يهينهم ما شبعتو اهانات 😹😹 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(https://botlua.tk)(.*)$')) then 
 ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على دومين الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(tshake.gq)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+if (f:match('^(.*)(Monsters.gq)(.*)$')) then 
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(Futils.lua)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(FTshAkETEAM)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+if (f:match('^(.*)(FMonsters)(.*)$')) then 
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(tshake.gq)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+if (f:match('^(.*)(Monsters.gq)(.*)$')) then 
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(down.php)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(TshAkETEAM/Tshakex)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+if (f:match('^(.*)(Monsters/Monstersx)(.*)$')) then 
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(raw.githubusercontent.com)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(rm -rf Tsh)(.*)$')) then 
-ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على الفرخ رضا اللوكي + كيكو دروح اتلوك بعد 👻😂 \n \n دباي "
+ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على فروخ دي 👻😂 \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(botlua.tk)(.*)$')) then 
 ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على دومين الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(rm -fr Tshake.lua)(.*)$')) then 
+if (f:match('^(.*)(rm -fr Monsters.lua)(.*)$')) then 
 ts23kk =  "\n⚠┇مكدر ارفع ملف يحذف ملف Tshake.lua لتبعبص ابني "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(Tshake.lua)(.*)$')) then 
+if (f:match('^(.*)(Monsters.lua)(.*)$')) then 
 ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على دومين الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(t.me/HHHHD)(.*)$')) then 
+if (f:match('^(.*)(t.me/Mons_bot)(.*)$')) then 
 ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على دومين الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
       if (f:match('^(.*)(/getChatMember?chat_id=)(.*)$')) then 
-ts23kk =  "\n⚠┇مكدر ارفع ملف يحذف ملف Tshake.lua لتبعبص ابني "
+ts23kk =  "\n⚠┇مكدر ارفع ملف يحذف ملف Monsters.lua لتبعبص ابني "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(22tshake%3a%22%20%2e%2e%20bot_id)(.*)$')) then 
-ts23kk =  "\n⚠️┇ادري هل فروخ كيكو ولول ما يبطلون سوالفهم \n \n دباي "
+if (f:match('^(.*)(22Monsters%3a%22%20%2e%2e%20bot_id)(.*)$')) then 
+ts23kk =  "\n⚠️┇ادري هل فروخ  ما يبطلون سوالفهم \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(2fmaster%2fTshake%2elua)(.*)$')) then 
-ts23kk =  "\n⚠️┇ادري هل فروخ كيكو ولول ما يبطلون سوالفهم \n \n دباي "
+if (f:match('^(.*)(2fmaster%2fMonsters%2elua)(.*)$')) then 
+ts23kk =  "\n⚠️┇ادري هل فروخ  ما يبطلون سوالفهم \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
 if (f:match('^(.*)(22hake)(.*)$')) then 
-ts23kk =  "\n⚠️┇ادري هل فروخ كيكو ولول ما يبطلون سوالفهم \n \n دباي "
+ts23kk =  "\n⚠️┇ادري هل فروخ  ما يبطلون سوالفهم \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-io.popen("rm -fr files_tshake/del.lua")
-io.popen("rm -fr files_tshake/hack.lua")
-io.popen("rm -fr files_tshake/d.lua")
-if f ~= "keko" then
+io.popen("rm -fr files_Monsters/del.lua")
+io.popen("rm -fr files_Monsters/hack.lua")
+io.popen("rm -fr files_Monsters/d.lua")
+if f ~= "cobr" then
 ts23 = ""
-if f:match("^(.*)(keko_tshake)(.*)$") then
+if f:match("^(.*)(keko_Monsters)(.*)$") then
 if f:match("^(.*)(function send)(.*)$") then
 ts23 = ts23 .. "\n⚠┇ارسال رسال نصيه"
 end
@@ -1129,10 +1129,10 @@ end
 database:sadd("files"..bot_id,name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, "✔┇تم تفعيل {"..name_t[2]..".lua}\n"..ts23, 1, 'html')
 else
-send(msg.chat_id_, msg.id_, 1, '⚠┇عذرا لا يمكن تشغيل {'..name_t[2]..'.lua} \n❗┇لانه لا يدعم سورس تشاكي \n 🦁┇[ملفات يدعمها سورس تشاكي](t.me/TSHAKETEAM)', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '⚠┇عذرا لا يمكن تشغيل {'..name_t[2]..'.lua} \n❗┇لانه لا يدعم سورس Monsters \n 🦁┇[ملفات يدعمها سورس Monsters](t.me/Mons_bot)', 1, 'md')
 end
 else
-send(msg.chat_id_, msg.id_, 1, '⚠┇عذرا لا يمكن تشغيل {'..name_t[2]..'.lua} \n❗┇لانه لا يدعم سورس تشاكي \n 🦁┇[ملفات يدعمها سورس تشاكي](t.me/TSHAKETEAM)', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '⚠┇عذرا لا يمكن تشغيل {'..name_t[2]..'.lua} \n❗┇لانه لا يدعم سورس Monsters \n 🦁┇[ملفات يدعمها سورس Monsters](t.me/Mons_bot)', 1, 'md')
 end
 end
 if text:match("^(تعطيل ملف) (.*)(.lua)$") then
@@ -1146,7 +1146,7 @@ send(msg.chat_id_, msg.id_, 1, "🗑┇تم حذف جميع الملفات", 1, 
 end
 if text:match("^(حذف ملف) (.*)(.lua)$") then
 local name_t = {string.match(text, "^(حذف ملف) (.*)(.lua)$")}
-io.popen("rm -fr files_tshake/"..name_t[2]..'.lua')
+io.popen("rm -fr files_Monsters/"..name_t[2]..'.lua')
 database:srem("files"..bot_id,name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, "✖┇تم حذف {"..name_t[2]..".lua}", 1, 'html')
 end
@@ -1157,8 +1157,8 @@ end
 if text:match("^(جلب ملف) (.*)(.lua)$") then
 local name_t = {string.match(text, "^(جلب ملف) (.*)(.lua)$")}
 send(msg.chat_id_, msg.id_, 1, "🕡┇ انتظر بعض الوقت وسيتم جلب \n 📁┇ملف : {"..name_t[2]..".lua}", 1, 'html')
-local tshakee = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
-local curl = 'curl "' .. tshakee .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'files_tshake/'..name_t[2]..'.lua' .. '"'
+local Monsters = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
+local curl = 'curl "' .. Monsters .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'files_Monsters/'..name_t[2]..'.lua' .. '"'
 io.popen(curl)
 end
 end
@@ -1167,20 +1167,20 @@ end
 if text then
 if text:match("^مسح قائمه العام$") then
 text = '☑┇تم مسح قائمه العام'
-database:del('tshake:'..bot_id..'gbanned:')
+database:del('Monsters:'..bot_id..'gbanned:')
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if text:match("^مسح المكتومين عام") then
 text = '☑┇ تم مسح المكتومين عام'
-database:del('tshake:'..bot_id..'gmuted:')
+database:del('Monsters:'..bot_id..'gmuted:')
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if  msg.content_.text_:match("^قائمه العام$") then
-local hash =   'tshake:'..bot_id..'gbanned:'
+local hash =   'Monsters:'..bot_id..'gbanned:'
 local list = database:smembers(hash)
 text = "⛔┇قائمة الحظر العام  ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
 for k,v in pairs(list) do
-local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+local user_info = database:hgetall('Monsters:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
 text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
@@ -1198,11 +1198,11 @@ end
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
 end
 if  msg.content_.text_:match("^المكتومين عام$") then
-local hash =   'tshake:'..bot_id..'gmuted:'
+local hash =   'Monsters:'..bot_id..'gmuted:'
 local list = database:smembers(hash)
 text = "⛔┇قائمة الكتم العام  ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
 for k,v in pairs(list) do
-local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+local user_info = database:hgetall('Monsters:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
 text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
@@ -1225,7 +1225,7 @@ if result.sender_user_id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gbanned:'
+local hash =  'Monsters:'..bot_id..'gbanned:'
 database:sadd(hash, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 tsX000("prore",msg,"🚫┇تم حظره من مجموعات البوت")
@@ -1242,8 +1242,8 @@ if result.id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gbanned:'
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'TSHAKETEAM')..')\n🚫┇تم حظره من المجموعات البوت'
+local hash =  'Monsters:'..bot_id..'gbanned:'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'Mons_bot')..')\n🚫┇تم حظره من المجموعات البوت'
 database:sadd(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -1260,14 +1260,14 @@ if apbll[2] == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gbanned:'
+local hash =  'Monsters:'..bot_id..'gbanned:'
 database:sadd(hash, apbll[2])
 tsX000(apbll[2],msg,"🚫┇تم حظره من المجموعات البوت")
 return false
 end
 if text:match("^الغاء العام$") and msg.reply_to_message_id_ then
 function ungban_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'gbanned:'
+local hash =  'Monsters:'..bot_id..'gbanned:'
 tsX000("prore",msg,"🚫┇تم الغاء حظره من المجموعات البوت")
 database:srem(hash, result.sender_user_id_)
 end
@@ -1278,9 +1278,9 @@ end
 if text:match("^الغاء العام @(.*)$") then
 local apid = {string.match(text, "^(الغاء العام) @(.*)$")}
 function ungban_by_username(extra, result, success)
-local hash =  'tshake:'..bot_id..'gbanned:'
+local hash =  'Monsters:'..bot_id..'gbanned:'
 if result.id_ then
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apid[2] or 'TSHAKETEAM')..')\n��┇تم الغاء حظره من المجموعات البوت'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apid[2] or 'Mons_bot')..')\n��┇تم الغاء حظره من المجموعات البوت'
 database:srem(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -1293,7 +1293,7 @@ end
 
 if text:match("^الغاء العام (%d+)$") then
 local apbll = {string.match(text, "^(الغاء العام) (%d+)$")}
-local hash =  'tshake:'..bot_id..'gbanned:'
+local hash =  'Monsters:'..bot_id..'gbanned:'
 database:srem(hash, apbll[2])
 tsX000(apbll[2],msg,"🚫┇تم الغاء حظره من مجموعات البوت")
 return false
@@ -1305,7 +1305,7 @@ if result.sender_user_id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gmuted:'
+local hash =  'Monsters:'..bot_id..'gmuted:'
 database:sadd(hash, result.sender_user_id_)
 tsX000("prore",msg,"🚫┇تم كتمه من المجموعات البوت")
 end
@@ -1321,8 +1321,8 @@ if result.id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gmuted:'
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'TSHAKETEAM')..')\n🚫┇تم كتمه من المجموعات البوت'
+local hash =  'Monsters:'..bot_id..'gmuted:'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'Mons_bot')..')\n🚫┇تم كتمه من المجموعات البوت'
 database:sadd(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -1339,14 +1339,14 @@ if apbll[2] == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
-local hash =  'tshake:'..bot_id..'gmuted:'
+local hash =  'Monsters:'..bot_id..'gmuted:'
 database:sadd(hash, apbll[2])
 tsX000(apbll[2],msg,"🚫┇تم كتمه من المجموعات البوت")
 return false
 end
 if text:match("^الغاء كتم العام$") and msg.reply_to_message_id_ then
 function ungmute_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'gmuted:'
+local hash =  'Monsters:'..bot_id..'gmuted:'
 tsX000("prore",msg,"🚫┇تم الغاء كتمه من المجموعات البوت")
 database:srem(hash, result.sender_user_id_)
 end
@@ -1357,9 +1357,9 @@ end
 if text:match("^الغاء كتم العام @(.*)$") then
 local apid = {string.match(text, "^(الغاء كتم العام) @(.*)$")}
 function ungmute_by_username(extra, result, success)
-local hash =  'tshake:'..bot_id..'gmuted:'
+local hash =  'Monsters:'..bot_id..'gmuted:'
 if result.id_ then
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apid[2] or 'TSHAKETEAM')..')\n🚫┇تم الغاء كتمه من المجموعات البوت'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apid[2] or 'Mons_bot')..')\n🚫┇تم الغاء كتمه من المجموعات البوت'
 database:srem(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -1372,7 +1372,7 @@ end
 
 if text:match("^الغاء كتم العام (%d+)$") then
 local apbll = {string.match(text, "^(الغاء كتم العام) (%d+)$")}
-local hash =  'tshake:'..bot_id..'gmuted:'
+local hash =  'Monsters:'..bot_id..'gmuted:'
 database:srem(hash, apbll[2])
 tsX000(apbll[2],msg,"🚫┇تم الغاء كتمه من المجموعات البوت")
 return false
@@ -1382,16 +1382,16 @@ end
 if text:match("^اضف مطور$") and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
 
 function promote_by_reply(extra, result, success)
-if redis:sismember('tshake:'..bot_id..'dev', result.sender_user_id_) then
+if redis:sismember('Monsters:'..bot_id..'dev', result.sender_user_id_) then
 tsX000("prore",msg,'🔖┇بالفعل تم رفعة مطور في البوت')
 else
-redis:set('tshake:'..bot_id..'sudoo'..result.sender_user_id_..'', 'yes')
-redis:sadd('tshake:'..bot_id..'dev', result.sender_user_id_)
+redis:set('Monsters:'..bot_id..'sudoo'..result.sender_user_id_..'', 'yes')
+redis:sadd('Monsters:'..bot_id..'dev', result.sender_user_id_)
 tsX000("prore",msg,'🔖┇تم رفعة مطور في البوت')
 end
 end
@@ -1401,22 +1401,22 @@ return false end
 if text:match("^اضف مطور @(.*)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 local apmd = {string.match(text, "^(اضف مطور) @(.*)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 function promote_by_username(extra, result, success)
 if result.id_ then
-redis:set('tshake:'..bot_id..'sudoo'..result.id_..'', 'yes')
-redis:sadd('tshake:'..bot_id..'dev', result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n\n🔖┇تم رفعة مطور في البوت'
+redis:set('Monsters:'..bot_id..'sudoo'..result.id_..'', 'yes')
+redis:sadd('Monsters:'..bot_id..'dev', result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n\n🔖┇تم رفعة مطور في البوت'
 else
 texts = '✖┇خطاء'
 end
@@ -1428,28 +1428,28 @@ return false end
 if text:match("^اضف مطور (%d+)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 local apmd = {string.match(text, "^(اضف مطور) (%d+)$")}
-redis:set('tshake:'..bot_id..'sudoo'..apmd[2]..'', 'yes')
-redis:sadd('tshake:'..bot_id..'dev', apmd[2])
+redis:set('Monsters:'..bot_id..'sudoo'..apmd[2]..'', 'yes')
+redis:sadd('Monsters:'..bot_id..'dev', apmd[2])
 tsX000(apmd[2],msg,'🔖┇تم رفعة مطور في البوت')
 return false end
 
 if text:match("^حذف مطور$") and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 function demote_by_reply(extra, result, success)
-if not redis:sismember('tshake:'..bot_id..'dev', result.sender_user_id_) then
+if not redis:sismember('Monsters:'..bot_id..'dev', result.sender_user_id_) then
 tsX000("prore",msg,'بالفعل تم تنزيلة من مطورين البوت')
 else
-redis:del('tshake:'..bot_id..'sudoo'..result.sender_user_id_..'', 'no')
-redis:srem('tshake:'..bot_id..'dev', result.sender_user_id_)
+redis:del('Monsters:'..bot_id..'sudoo'..result.sender_user_id_..'', 'no')
+redis:srem('Monsters:'..bot_id..'dev', result.sender_user_id_)
 tsX000("prore",msg,'تم تنزيلة من مطورين البوت')
 end
 end
@@ -1460,15 +1460,15 @@ end
 if text:match("^حذف مطور @(.*)$")  then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 local apmd = {string.match(text, "^(حذف مطور) @(.*)$")}
 function demote_by_username(extra, result, success)
 if result.id_ then
-redis:del('tshake:'..bot_id..'sudoo'..result.id_..'', 'no')
-redis:srem('tshake:'..bot_id..'dev', result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n┇ تم تنزيلة من مطورين البوت  👨🏼‍🔧'
+redis:del('Monsters:'..bot_id..'sudoo'..result.id_..'', 'no')
+redis:srem('Monsters:'..bot_id..'dev', result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n┇ تم تنزيلة من مطورين البوت  👨🏼‍🔧'
 else
 texts = '✖┇خطاء'
 end
@@ -1479,27 +1479,27 @@ end
 if text:match("^حذف مطور (%d+)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 local apmd = {string.match(text, "^(حذف مطور) (%d+)$")}
-redis:del('tshake:'..bot_id..'sudoo'..apmd[2]..'', 'no')
-redis:srem('tshake:'..bot_id..'dev', apmd[2])
+redis:del('Monsters:'..bot_id..'sudoo'..apmd[2]..'', 'no')
+redis:srem('Monsters:'..bot_id..'dev', apmd[2])
 tsX000(apmd[2],msg,'☑┇ تم تنزيله من مطورين البوت')
 return false 
 end
 
 
 if text == 'تحديث' then
-dofile('Tshake.lua')  
+dofile('Monsters.lua')  
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 end
 if text:match("^تحديث السورس$")  then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
-os.execute('rm -rf Tshake.lua')
-os.execute('cd libs;wget https://raw.githubusercontent.com/tshakeabas/Tshake/master/libs/utils.lua')
-os.execute('wget https://raw.githubusercontent.com/tshakeabas/Tshake/master/Tshake.lua')
+os.execute('rm -rf Monsters.lua')
+os.execute('cd libs;wget https://github.com/Ahmad1289/Monsters/blob/master/libs/utils.lua')
+os.execute('wget https://github.com/Ahmad1289/Monsters/blob/master/Monsters.lua')
 dofile('Tshake.lua')  
 return false
 end
@@ -1512,590 +1512,590 @@ end
 function TSlocks(msg) -- Function locks && unlocks
 local text = msg.content_.text_
 if text then
---         »»               Start tshake lock                       ««              --
+--         »»               Start Monsters lock                       ««              --
 if (text == "قفل التاك") then
-local tsX_o = database:get("lock_tag:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_tag:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل التاك ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل التاك ")
-database:set("lock_tag:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_tag:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الرد") then
-local tsX_o = database:get("lock_reple:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_reple:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الرد على الرسائل ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الرد على الرسائل ")
-database:set("lock_reple:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_reple:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الشارحه") then
-local tsX_o = database:get("lock_sarha:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_sarha:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الشارحه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الشارحه ")
-database:set("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_sarha:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الكلايش") then
-local tsX_o = database:get("lock_word:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_word:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الكلايش ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الكلايش ")
-database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_word:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
-local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_edit:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل التعديل ")
 else
 tsX000("lock",msg,"🔐┇تم قفل التعديل ")
-database:set("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_edit:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل التكرار") then
-local tsX_o = database:get("lock_lllll:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_lllll:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل التكرار ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل التكرار ")
-database:set("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_lllll:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل المتحركه") then
-local tsX_o = database:get("lock_gif:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_gif:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل المتحركه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل المتحركه ")
-database:set("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الملفات") then
-local tsX_o = database:get("lock_files:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_files:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الملفات ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الملفات ")
-database:set("lock_files:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_files:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الماركدون") then
-local tsX_o = database:get("lock_mark:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_mark:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الماركدون ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الماركدون ")
-database:set("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_mark:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الصور") then
-local tsX_o = database:get("lock_photo:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_photo:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الصور ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الصور ")
-database:set("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الملصقات") then
-local tsX_o = database:get("lock_stecker:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_stecker:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الملصقات ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الملصقات ")
-database:set("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الفيديو") then
-local tsX_o = database:get("lock_video:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_video:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الفيديو ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الفيديو ")
-database:set("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الانلاين") then
-local tsX_o = database:get("lock_inline:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_inline:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الانلاين ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الانلاين ")
-database:set("lock_inline:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_inline:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الدردشه") then
-local tsX_o = database:get("lock_chat:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_chat:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الدردشه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الدردشه ")
-database:set("lock_chat:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_chat:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل التوجيه") then
-local tsX_o = database:get("lock_fwd:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_fwd:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل التوجيه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل التوجيه ")
-database:set("lock_fwd:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_fwd:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل التثبيت") then
-local tsX_o = database:get("lock_pin:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_pin:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل التثبيت ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل التثبيت ")
-database:set("lock_pin:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_pin:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الاغاني") then
-local tsX_o = database:get("lock_audeo:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_audeo:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الاغاني ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الاغاني ")
-database:set("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الصوت") then
-local tsX_o = database:get("lock_voice:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_voice:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الصوت ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الصوت ")
-database:set("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الجهات") then
-local tsX_o = database:get("lock_contact:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_contact:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الجهات ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الجهات ")
-database:set("lock_contact:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_contact:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل العربيه") then
-local tsX_o = database:get("lock_ar:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_ar:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل العربيه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل العربيه ")
-database:set("lock_ar:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_ar:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الانكليزيه") then
-local tsX_o = database:get("lock_en:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_en:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الانكليزيه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الانكليزيه ")
-database:set("lock_en:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_en:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الميديا") then
-local tsX_o = database:get("lock_media:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_media:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الميديا ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الميديا ")
-database:set("lock_media:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_media:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_note:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الروابط") then
-local tsX_o = database:get("lock_link:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_link:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الروابط ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الروابط ")
-database:set("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_link:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل المعرف") then
-local tsX_o = database:get("lock_username:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_username:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل المعرف ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل المعرف ")
-database:set("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_username:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الاشعارات") then
-local tsX_o = database:get("lock_new:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_new:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الاشعارات ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الاشعارات ")
-database:set("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_new:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل البوتات بالطرد") then
-local tsX_o = database:get("lock_botAndBan:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_botAndBan:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل البوتات بالطرد ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل البوتات بالطرد ")
-database:set("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_botAndBan:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل البوتات") then
-local tsX_o = database:get("lock_bot:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_bot:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل البوتات ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل البوتات ")
-database:set("lock_bot:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_bot:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الدخول") then
-local tsX_o = database:get("lock_join:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_join:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل الدخول للمجموعه ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل الدخول للمجموعه ")
-database:set("lock_join:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_join:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل بصمه الفيديو") then
-local tsX_o = database:get("lock_note:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_note:Monsters"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🔐┇ بالفعل تم قفل بصمه فيديو ")
 else
 tsX000("lock",msg,"🔐┇ تم قفل بصمه فيديو ")
-database:set("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_note:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "قفل الكل") then
-database:set("lock_tag:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_files:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_contact:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_fwd:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
+database:set("lock_tag:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_sarha:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_word:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_edit:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_lllll:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_files:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_mark:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_contact:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_fwd:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_link:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_username:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_botAndBan:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_new:Monsters"..msg.chat_id_..bot_id,"ok")
 tsX000("lock",msg,"🔐┇ تم قفل جميع الاوامر ")
 end
---         »»                 End tshake lock                         ««              --
---         »»               Start tshake unlock                       ««              --
+--         »»                 End Monsters lock                         ««              --
+--         »»               Start Monsters unlock                       ««              --
 if (text == "فتح الكل") then
-database:del("lock_tag:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_files:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_contact:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_fwd:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_tag:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_sarha:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_word:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_edit:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_lllll:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_files:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_mark:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_contact:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_fwd:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_link:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_username:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_botAndBan:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_new:Monsters"..msg.chat_id_..bot_id,"ok")
 tsX000("lock",msg,"🔐┇ تم فتح جميع الاوامر ")
 end
 if (text == "فتح الاشعارات") then
-local tsX_o = database:get("lock_new:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_new:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الاشعارات ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الاشعارات ")
-database:del("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_new:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التاك") then
-local tsX_o = database:get("lock_tag:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_tag:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التاك ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح التاك ")
-database:del("lock_tag:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_tag:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الرد") then
-local tsX_o = database:get("lock_reple:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_reple:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الرد على الرسائل ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الرد على الرسائل ")
-database:del("lock_reple:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_reple:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الكلايش") then
-local tsX_o = database:get("lock_word:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_word:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الكلايش ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الكلايش ")
-database:del("lock_word:tshake"..msg.chat_id_..bot_id)
+database:del("lock_word:Monsters"..msg.chat_id_..bot_id)
 end
 end
 
 if (text == "فتح الشارحه") then
-local tsX_o = database:get("lock_sarha:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_sarha:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الشارحه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الشارحه ")
-database:del("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_sarha:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التكرار") then
-local tsX_o = database:get("lock_lllll:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_lllll:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التكرار ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح التكرار ")
-database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_lllll:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
-local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_edit:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التعديل ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح التعديل ")
-database:del("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_edit:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح المتحركه") then
-local tsX_o = database:get("lock_gif:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_gif:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح المتحركه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح المتحركه ")
-database:del("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الملفات") then
-local tsX_o = database:get("lock_files:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_files:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الملفات ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الملفات ")
-database:del("lock_files:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_files:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الماركدون") then
-local tsX_o = database:get("lock_mark:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_mark:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الماركدون ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الماركدون ")
-database:del("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_mark:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الصور") then
-local tsX_o = database:get("lock_photo:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_photo:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الصور ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الصور ")
-database:del("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الملصقات") then
-local tsX_o = database:get("lock_stecker:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_stecker:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الملصقات ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الملصقات ")
-database:del("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الفيديو") then
-local tsX_o = database:get("lock_video:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_video:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الفيديو ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الفيديو ")
-database:del("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الانلاين") then
-local tsX_o = database:get("lock_inline:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_inline:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الانلاين ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الانلاين ")
-database:del("lock_inline:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_inline:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الدردشه") then
-local tsX_o = database:get("lock_chat:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_chat:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الدردشه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الدردشه ")
-database:del("lock_chat:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_chat:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التوجيه") then
-local tsX_o = database:get("lock_fwd:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_fwd:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التوجيه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح التوجيه ")
-database:del("lock_fwd:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_fwd:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التثبيت") then
-local tsX_o = database:get("lock_pin:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_pin:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التثبيت ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح التثبيت ")
-database:del("lock_pin:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_pin:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الاغاني") then
-local tsX_o = database:get("lock_audeo:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_audeo:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الاغاني ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الاغاني ")
-database:del("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الصوت") then
-local tsX_o = database:get("lock_voice:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_voice:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الصوت ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الصوت ")
-database:del("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح البوتات بالطرد") then
-local tsX_o = database:get("lock_botAndBan:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_botAndBan:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح البوتات بالطرد ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح البوتات بالطرد ")
-database:del("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_botAndBan:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الجهات") then
-local tsX_o = database:get("lock_contact:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_contact:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الجهات ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الجهات ")
-database:del("lock_contact:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_contact:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح العربيه") then
-local tsX_o = database:get("lock_ar:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_ar:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح العربيه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح العربيه ")
-database:del("lock_ar:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_ar:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الانكليزيه") then
-local tsX_o = database:get("lock_en:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_en:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الانكليزيه ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الانكليزيه ")
-database:del("lock_en:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_en:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الميديا") then
-local tsX_o = database:get("lock_media:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_media:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الميديا ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الميديا ")
-database:del("lock_media:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
-database:del("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_media:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
+database:del("lock_note:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح المعرف") then
-local tsX_o = database:get("lock_username:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_username:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح المعرف ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح المعرف ")
-database:del("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_username:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح بصمه الفيديو") then
-local tsX_o = database:get("lock_note:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_note:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح بصمه فيديو ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح بصمه فيديو ")
-database:del("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_note:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الروابط") then
-local tsX_o = database:get("lock_link:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_link:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الروابط ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح الروابط ")
-database:del("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_link:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الدخول") then
-local tsX_o = database:get("lock_join:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_join:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح الدخول للمجموعه ")
 else
 tsX000("lock",msg,"⚠️┇ تم فتح الدخول للمجموعه ")
-database:del("lock_join:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_join:Monsters"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح البوتات") then
-local tsX_o = database:get("lock_bot:tshake"..msg.chat_id_..bot_id)
+local tsX_o = database:get("lock_bot:Monsters"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح البوتات ")
 else
 tsX000("lock",msg,"⚠️┇تم فتح البوتات ")
-database:del("lock_bot:tshake"..msg.chat_id_..bot_id,"ok")
+database:del("lock_bot:Monsters"..msg.chat_id_..bot_id,"ok")
 end
-end  --         »»               End tshake unlock                       ««              --
+end  --         »»               End Monsters unlock                       ««              --
 end 
 end 
 --         »»               Start Function Check Msg                       ««              --
@@ -2103,16 +2103,16 @@ function TSCheckMsg(msg)
 local text = msg.content_.text_
 
 if text and not is_creatorbasic(msg) then 
-if database:get("lock_word:tshake"..msg.chat_id_..bot_id) then 
-local tshake_wr = (database:get("tshake:not:word:"..bot_id..msg.chat_id_) or 100)
-if #text >= tonumber(tshake_wr) then
+if database:get("lock_word:Monsters"..msg.chat_id_..bot_id) then 
+local Monsters_wr = (database:get("Monsters:not:word:"..bot_id..msg.chat_id_) or 100)
+if #text >= tonumber(Monsters_wr) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 end
 if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]")  or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
-if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_link:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
@@ -2120,7 +2120,7 @@ end
 if msg.content_.caption_ then
 text = msg.content_.caption_
 if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
-if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_link:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
@@ -2129,60 +2129,60 @@ end
 if msg.content_.caption_ then
 text = msg.content_.caption_
 if text and text:match("(.*)(@)(.*)")  then
-if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_username:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 end
 if text and text:match("(.*)(@)(.*)")  then
-if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_username:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
-if database:get("lock_chat:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_chat:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 if text and text:match("(.*)(/)(.*)")  then
-if database:get("lock_sarha:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_sarha:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if text and text:match("(.*)(#)(.*)")  then
-if database:get("lock_tag:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_tag:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.reply_to_message_id_ ~= 0 then
 print('&&&&')
-if database:get("lock_reple:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_reple:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if  msg.content_.ID == "MessageChatJoinByLink" then
-if database:get("lock_join:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_join:Monsters"..msg.chat_id_..bot_id) then
 changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageChatAddMembers"  then
-if database:get("lock_join:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_join:Monsters"..msg.chat_id_..bot_id) then
 changeChatMemberStatus(msg.chat_id_, msg.content_.members_[0].id_, "Kicked")
 return "stop"
 end
 end
 if msg.content_.ID == "MessageChatAddMembers" then
 if msg.content_.members_[0].type_.ID == 'UserTypeBot' then
-if database:get("lock_bot:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_bot:Monsters"..msg.chat_id_..bot_id) then
 changeChatMemberStatus(msg.chat_id_, msg.content_.members_[0].id_, "Kicked")
 end
-if database:get("lock_botAndBan:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_botAndBan:Monsters"..msg.chat_id_..bot_id) then
 local function cb(extra,result,success)
 local bots = result.members_
 for i=0 , #bots do
@@ -2196,90 +2196,90 @@ end
 end
 end
 if text and text:match("(.*)(#)(.*)")  then
-if database:get("lock_sarha:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_sarha:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.forward_info_ then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
-if database:get("lock_fwd:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_fwd:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 end
 if msg.content_.ID == "MessageSticker" or msg.content_.ID == "MessageUnsupported" then
-if database:get("lock_stecker:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_stecker:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageChatJoinByLink" or msg.content_.ID == "MessageChatAddMembers" then
-if database:get("lock_new:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_new:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageChatAddMembers" then
-database:incr('tshake:'..bot_id..'user:add'..msg.chat_id_..':'..msg.sender_user_id_)
+database:incr('Monsters:'..bot_id..'user:add'..msg.chat_id_..':'..msg.sender_user_id_)
 end
 if msg.content_.ID == "MessageUnsupported" then
-if database:get("lock_note:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_note:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessagePhoto" then
-if database:get("lock_photo:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_photo:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageAudio" then
-if database:get("lock_audeo:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_audeo:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageVoice" then
-if database:get("lock_voice:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_voice:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageVideo" then
-if database:get("lock_video:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_video:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageAnimation" then
-if database:get("lock_gif:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_gif:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageContact" then
-if database:get("lock_contact:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_contact:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if text and text:match("[\216-\219][\128-\191]") then
-if database:get("lock_ar:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_ar:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if msg.content_.ID == "MessageDocument" then
-if database:get("lock_files:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_files:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
 end
 if text and text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
-if database:get("lock_en:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_en:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
@@ -2288,7 +2288,7 @@ end
 if msg.content_.entities_ then
 if msg.content_.entities_[0] then
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then
-if database:get("lock_mark:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_mark:Monsters"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
 end
@@ -2296,14 +2296,14 @@ end
 end
 end
 
-if database:get("lock_lllll:tshake"..msg.chat_id_..bot_id) then
+if database:get("lock_lllll:Monsters"..msg.chat_id_..bot_id) then
 local hash = 'flood:max:'..bot_id..msg.chat_id_
 if not database:get(hash) then
 floodMax = 10
 else
 floodMax = tonumber(database:get(hash))
 end
-local hash = 'tshake:'..bot_id..'flood:time:'..msg.chat_id_
+local hash = 'Monsters:'..bot_id..'flood:time:'..msg.chat_id_
 if not database:get(hash) then
 floodTime = 1
 else
@@ -2326,21 +2326,21 @@ local id = msg.id_
 local msgs = {[0] = id}
 local chat = msg.chat_id_
 user_id = msg.sender_user_id_
-o = database:get("tsahke:spam:lock:"..os.date("%x")..bot_id..msg.chat_id_)
+o = database:get("Monsters:spam:lock:"..os.date("%x")..bot_id..msg.chat_id_)
 if (o and (tonumber(o) >= 5)) then
-database:set("lock_media:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
-database:set("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
-database:set('tshake:'..bot_id..'get:photo'..msg.chat_id_,true)
+database:set("lock_media:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_audeo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_video:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_photo:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_stecker:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_voice:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_gif:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_note:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_word:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_mark:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_link:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set("lock_new:Monsters"..msg.chat_id_..bot_id,"ok")
+database:set('Monsters:'..bot_id..'get:photo'..msg.chat_id_,true)
 send(msg.chat_id_, 0, 1, '⚠️┇تم كشف عمليه تخريب في المجموعة \n‼️┇وتم قفل الميديا وسيتم طرد جميع الاشخاص الذين يقومون بعمل تكرار', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '🎫┇الايدي ~⪼*('..msg.sender_user_id_..')* \n❕┇قمت بعمل تكرار للرسائل المحدده\n☑┇وتم كتمك في المجموعه\n', 1, 'md')
@@ -2353,8 +2353,8 @@ delete_msg(msg.chat_id_, {[0] = msgm})
 msgm = msgm - 1048576
 end
 end
-database:incr("tsahke:spam:lock:"..os.date("%x")..bot_id..msg.chat_id_)
-database:sadd('tshake:'..bot_id..'muted:'..msg.chat_id_, msg.sender_user_id_)
+database:incr("Monsters:spam:lock:"..os.date("%x")..bot_id..msg.chat_id_)
+database:sadd('Monsters:'..bot_id..'muted:'..msg.chat_id_, msg.sender_user_id_)
 end
 end
 database:setex(hash, floodTime, msgs+1)
@@ -2377,9 +2377,9 @@ function TSsudo(msg)
 text = msg.content_.text_
 if msg.content_.text_ then
 if text == 'مغادره' then
-local lave = database:get('tshake:'..bot_id..'leave:groups')
+local lave = database:get('Monsters:'..bot_id..'leave:groups')
 print(lave)
-if not database:get('tshake:'..bot_id..'leave:groups') then
+if not database:get('Monsters:'..bot_id..'leave:groups') then
 chat_leave(msg.chat_id_, bot_id)
 send(msg.chat_id_, msg.id_, 1, "☑┇تم مغادره المجموعه", 1, 'md')
 else
@@ -2388,28 +2388,28 @@ end
 end
 if (text and text == 'تفعيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم تفعيل مغادره البوت', 1, 'md')
-database:del('tshake:'..bot_id..'leave:groups')
+database:del('Monsters:'..bot_id..'leave:groups')
 end
 
 if (text and text == 'تعطيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل مغادره البوت', 1, 'md')
-database:set('tshake:'..bot_id..'leave:groups',true)
+database:set('Monsters:'..bot_id..'leave:groups',true)
 end
 
 if text:match("^مسح الاساسين$") and is_sudo(msg) then
 text = '☑┇تم مسح قائمه المنشئين الاساسين'
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if text:match("^رفع منشئ اساسي$") and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 function promote_by_reply(extra, result, success)
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:sadd('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_)
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:sadd('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_)
 tsX000("prore",msg,'🔖┇تم رفعة منشئ اساسي  في البوت')
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -2418,15 +2418,15 @@ end
 if text:match("^رفع منشئ اساسي @(.*)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 local apmd = {string.match(text, "^(رفع منشئ اساسي) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:sadd('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n┇ 🔖┇تم رفعة منشئ اساسي  في البوت  '
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:sadd('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n┇ 🔖┇تم رفعة منشئ اساسي  في البوت  '
 else
 texts = '✖┇خطاء'
 end
@@ -2437,23 +2437,23 @@ end
 if text:match("^رفع منشئ اساسي (%d+)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')    
 return false end
 local apmd = {string.match(text, "^(رفع منشئ اساسي) (%d+)$")}
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:sadd('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apmd[2])
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:sadd('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, apmd[2])
 tsX000(apmd[2],msg,"🔖┇تم رفعة منشئ اساسي  في البوت")
 end
 if text:match("^تنزيل منشئ اساسي$") and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 function promote_by_reply(extra, result, success)
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:srem('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_)
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:srem('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_)
 tsX000("prore",msg,'تم تنزيلة منشئ اساسي من البوت')
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -2461,15 +2461,15 @@ end
 if text:match("^تنزيل منشئ اساسي @(.*)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 local apmd = {string.match(text, "^(تنزيل منشئ اساسي) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:srem('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n┇ تم تنزيلة منشئ اساسي من البوت  '
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:srem('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n┇ تم تنزيلة منشئ اساسي من البوت  '
 else
 texts = '✖┇خطاء'
 end
@@ -2480,17 +2480,17 @@ end
 if text:match("^تنزيل منشئ اساسي (%d+)$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')    
 return false end
 local apmd = {string.match(text, "^(تنزيل منشئ اساسي) (%d+)$")}
-database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
-database:srem('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apmd[2])
+database:del('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
+database:srem('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_, apmd[2])
 tsX000(apmd[2],msg,"تم تنزيلة منشئ اساسي من البوت")
 end
 if text == 'توجيه للكل' and tonumber(msg.reply_to_message_id_) > 0  and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then  
 function fwwdmsg(taha,storm,sorc)  
-local list = database:smembers('tshake:'..bot_id..'groups') 
+local list = database:smembers('Monsters:'..bot_id..'groups') 
 for k,v in pairs(list) do  
 tdcli_function ({
 ID = "ForwardMessages",
@@ -2500,7 +2500,7 @@ message_ids_ = {[0] = storm.id_},
 disable_notification_ = 1,
 from_background_ = 1},cb or dl_cb,cmd) 
 end
-local gps = database:scard('tshake:'..bot_id.."groups")  
+local gps = database:scard('Monsters:'..bot_id.."groups")  
 local text = '🚸 ❯❯ تم ارسال توجيه الى *{ '..gps..' }* مجموعات'  
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')  
 end  
@@ -2508,7 +2508,7 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),fwwdmsg)
 end
 if text == 'توجيه خاص' and tonumber(msg.reply_to_message_id_) > 0  and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then  
 function fwwdmsg(taha,storm,sorc)  
-local list = database:smembers('tshake:'..bot_id.."userss")
+local list = database:smembers('Monsters:'..bot_id.."userss")
 for k,v in pairs(list) do  
 tdcli_function ({
 ID = "ForwardMessages",
@@ -2518,7 +2518,7 @@ message_ids_ = {[0] = storm.id_},
 disable_notification_ = 1,
 from_background_ = 1},cb or dl_cb,cmd) 
 end
-local gps = database:scard('tshake:'..bot_id.."userss")  
+local gps = database:scard('Monsters:'..bot_id.."userss")  
 local text = '♻┇ تم ارسال توجيه الى *{ '..gps..' }* مشترك في الخاص'  
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')  
 end  
@@ -2526,10 +2526,10 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),fwwdmsg)
 end
 
 if text and text == "اذاعه" then 
-if (not database:get('tshake:'..bot_id..'bc:groups') or tonumber(sudo_add) == tonumber(msg.sender_user_id_)) then
+if (not database:get('Monsters:'..bot_id..'bc:groups') or tonumber(sudo_add) == tonumber(msg.sender_user_id_)) then
 send(msg.chat_id_, msg.id_, 1, '☑┇ ارسال الان نص او الميديا : (صوره - فديو - متحركه - ملف)', 1, 'md')
-database:set("tshake:set_if_bc_new:"..bot_id..msg.sender_user_id_,"ok")
-return "tshake"
+database:set("Monsters:set_if_bc_new:"..bot_id..msg.sender_user_id_,"ok")
+return "Monsters"
 else
 send(msg.chat_id_, msg.id_, 1, '☑┇ الاذاعه معطله ', 1, 'md')
 end
@@ -2539,8 +2539,8 @@ end
 
 
 if text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 then 
-if (not database:get('tshake:'..bot_id..'bc:groups') or tonumber(sudo_add) == tonumber(msg.sender_user_id_)) then
-database:setex('tshake:'..bot_id.."bc:in:pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+if (not database:get('Monsters:'..bot_id..'bc:groups') or tonumber(sudo_add) == tonumber(msg.sender_user_id_)) then
+database:setex('Monsters:'..bot_id.."bc:in:pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_, 1, "☑┇ ارسال الان نص او الميديا : (صوره - فديو - متحركه )\n", 1, "md") 
 else
 send(msg.chat_id_, msg.id_, 1, '☑┇ الاذاعه معطله ', 1, 'md')
@@ -2550,7 +2550,7 @@ end
 
 
 if text == "تنظيف المشتركين" and tonumber(sudo_add) == tonumber(msg.sender_user_id_) then
-local pv = database:smembers('tshake:'..bot_id.."userss")
+local pv = database:smembers('Monsters:'..bot_id.."userss")
 local sendok = 0
 for i = 1, #pv do
 tdcli_function({ID='GetChat',chat_id_ = pv[i]
@@ -2562,7 +2562,7 @@ if data.ID and data.ID == "Ok"  then
 print('\27[30;33m»» THE USER IS SAVE ME ↓\n»» '..pv[i]..'\n\27[1;37m')
 else
 print('\27[30;31m»» THE USER IS BLOCK ME ↓\n»» '..pv[i]..'\n\27[1;37m')
-database:srem('tshake:'..bot_id.."userss",pv[i])
+database:srem('Monsters:'..bot_id.."userss",pv[i])
 sendok = sendok + 1
 end
 if #pv == i then 
@@ -2580,7 +2580,7 @@ return false
 end
 
 if text == "تنظيف الكروبات" and tonumber(sudo_add) == tonumber(msg.sender_user_id_) then
-local group = database:smembers('tshake:'..bot_id..'groups') 
+local group = database:smembers('Monsters:'..bot_id..'groups') 
 local w = 0
 local q = 0
 for i = 1, #group do
@@ -2588,30 +2588,30 @@ tdcli_function({ID='GetChat',chat_id_ = group[i]
 },function(arg,data)
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
 print('\27[30;34m»» THE BOT IS NOT ADMIN ↓\n»» '..group[i]..'\n\27[1;37m')
-database:srem("thsake:gog"..bot_id,group[i]) 
-database:srem('tshake:'..bot_id..'pro:groups',group[i]) 
-database:srem( 'tshake:'..bot_id.."groups",group[i]) 
+database:srem("Monsters:gog"..bot_id,group[i]) 
+database:srem('Monsters:'..bot_id..'pro:groups',group[i]) 
+database:srem( 'Monsters:'..bot_id.."groups",group[i]) 
 changeChatMemberStatus(group[i], bot_id, "Left")
 w = w + 1
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
-database:srem("thsake:gog"..bot_id,group[i]) 
-database:srem('tshake:'..bot_id..'pro:groups',group[i]) 
-database:srem( 'tshake:'..bot_id.."groups",group[i]) 
+database:srem("Monsters:gog"..bot_id,group[i]) 
+database:srem('Monsters:'..bot_id..'pro:groups',group[i]) 
+database:srem( 'Monsters:'..bot_id.."groups",group[i]) 
 q = q + 1
 print('\27[30;35m»» THE BOT IS LEFT GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
-database:srem("thsake:gog"..bot_id,group[i]) 
-database:srem('tshake:'..bot_id..'pro:groups',group[i]) 
-database:srem( 'tshake:'..bot_id.."groups",group[i]) 
+database:srem("Monsters:gog"..bot_id,group[i]) 
+database:srem('Monsters:'..bot_id..'pro:groups',group[i]) 
+database:srem( 'Monsters:'..bot_id.."groups",group[i]) 
 q = q + 1
 print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
-database:srem("thsake:gog"..bot_id,group[i]) 
-database:srem('tshake:'..bot_id..'pro:groups',group[i]) 
-database:srem( 'tshake:'..bot_id.."groups",group[i]) 
+database:srem("Monsters:gog"..bot_id,group[i]) 
+database:srem('Monsters:'..bot_id..'pro:groups',group[i]) 
+database:srem( 'Monsters:'..bot_id.."groups",group[i]) 
 w = w + 1
 end
 if #group == i then 
@@ -2638,95 +2638,95 @@ end
 return false
 end
 if (text:match("^عدد الكروبات$") or text:match("^الاحصائيات$")) and is_vip(msg) then
-local gps = database:scard('tshake:'..bot_id.."groups") or 0
-local user = database:scard('tshake:'..bot_id.."userss") or 0
-local gps2 = database:scard("thsake:gog"..bot_id) or 0
-local gps9 = database:scard("thsake:good"..bot_id..os.date("%d")) or 0
-local gps3 = database:scard('tshake:'..bot_id..'pro:groups') or 0
+local gps = database:scard('Monsters:'..bot_id.."groups") or 0
+local user = database:scard('Monsters:'..bot_id.."userss") or 0
+local gps2 = database:scard("Monsters:gog"..bot_id) or 0
+local gps9 = database:scard("Monsters:good"..bot_id..os.date("%d")) or 0
+local gps3 = database:scard('Monsters:'..bot_id..'pro:groups') or 0
 send(msg.chat_id_, msg.id_, 1, '• المجموعات :\n📊┇عدد الكروبات الكلي ~⪼  *{'..gps..'}*\n🔋┇عدد الكروبات المفعله ~⪼  *{'..gps2..'}*\n🔌┇عدد الكروبات الغير مفعله ~⪼  *{'..(gps - gps2)..'}*\n💡┇عدد الكروبات المدفوعه ~⪼  *{'..(gps3)..'}*\n⏱┇عدد الكروبات المتفاعله اليوم ~⪼  *{'..(gps9)..'}*\n\n• الاعضاء :\n👥┇ عدد اعضاء الخاص : {`'..user..'`}', 1, 'md')
 end
 if tonumber(sudo_add) == tonumber(msg.sender_user_id_) then
 if text:match("^تفعيل الكل$") then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
-local gps = database:smembers('tshake:'..bot_id.."groups") or 0
-local gps2 = database:smembers("thsake:gog"..bot_id) or 0
+local gps = database:smembers('Monsters:'..bot_id.."groups") or 0
+local gps2 = database:smembers("Monsters:gog"..bot_id) or 0
 for i=1,#gps do
-database:sadd("thsake:gog"..bot_id, gps[i])
-database:set('tshake:'..bot_id.."enable:"..gps[i],true)
-database:set( 'tshake:'..bot_id.."charge:"..gps[i],true)
+database:sadd("Monsters:gog"..bot_id, gps[i])
+database:set('Monsters:'..bot_id.."enable:"..gps[i],true)
+database:set( 'Monsters:'..bot_id.."charge:"..gps[i],true)
 end
 send(msg.chat_id_, msg.id_, 1, '🔋┇تم تفعيل ~⪼  *{'..(#gps - #gps2)..'}*', 1, 'md')
 end
 if text:match("^تعطيل الكل$") then
-local gps = database:smembers('tshake:'..bot_id.."groups") or 0
-local gps2 = database:smembers("thsake:gog"..bot_id) or 0
+local gps = database:smembers('Monsters:'..bot_id.."groups") or 0
+local gps2 = database:smembers("Monsters:gog"..bot_id) or 0
 for i=1,#gps do
-database:del("thsake:gog"..bot_id)
-database:del('tshake:'..bot_id.."enable:"..gps[i])
-database:del( 'tshake:'..bot_id.."charge:"..gps[i])
+database:del("Monsters:gog"..bot_id)
+database:del('Monsters:'..bot_id.."enable:"..gps[i])
+database:del( 'Monsters:'..bot_id.."charge:"..gps[i])
 end
 send(msg.chat_id_, msg.id_, 1, '🔌┇تم تعطيل ~⪼  *{'..#gps..'}*', 1, 'md')
 end
 if text:match("^مغادره الكل$") then
-local gps = database:smembers('tshake:'..bot_id.."groups") or 0
-local gps2 = database:smembers("thsake:gog"..bot_id) or 0
+local gps = database:smembers('Monsters:'..bot_id.."groups") or 0
+local gps2 = database:smembers("Monsters:gog"..bot_id) or 0
 send(msg.chat_id_, msg.id_, 1, '💣┇تم مغادره ~⪼  *{'..#gps..'}*', 1, 'md')
 for i=1,#gps do
-database:del('tshake:'..bot_id.."enable:"..gps[i])
+database:del('Monsters:'..bot_id.."enable:"..gps[i])
 chat_leave(msg.chat_id_, bot_id)
 end
-database:del("thsake:gog"..bot_id)
-database:del('tshake:'..bot_id.."groups")
+database:del("Monsters:gog"..bot_id)
+database:del('Monsters:'..bot_id.."groups")
 end
 end 
 if text:match("^روابط الكروبات$") then
-local gpss = database:smembers('tshake:'..bot_id.."groups") or 0
+local gpss = database:smembers('Monsters:'..bot_id.."groups") or 0
 text233 = '📊┇روابط الكروبات\n\n'
 for i=1, #gpss do
-local link = database:get('tshake:'..bot_id.."group:link"..gpss[i])
+local link = database:get('Monsters:'..bot_id.."group:link"..gpss[i])
 text233 = text233.."|"..i.."| ~⪼ "..gpss[i].."\n ~⪼ "..(link or  "لا يوجد رابط").."\n"
 end
-local f = io.open('TshAkE.txt', 'w')
+local f = io.open('Monsters.txt', 'w')
 f:write(text233)
 f:close()
-local tshakee = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
-local curl = 'curl "' .. tshakee .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'TshAkE.txt' .. '"'
+local Monsters = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
+local curl = 'curl "' .. Monsters .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'Monsters.txt' .. '"'
 io.popen(curl)
 end
 if text and (text == "الكروبات المتفاعله" or text == "روابط الكروبات المتفاعله") then
-local gpss = database:smembers("thsake:good"..bot_id..os.date("%d")) or 0
+local gpss = database:smembers("Monsters:good"..bot_id..os.date("%d")) or 0
 text233 = '📊┇روابط الكروبات المتفاعله\n\n'
 for i=1, #gpss do
-local link = database:get('tshake:'..bot_id.."group:link"..gpss[i])
+local link = database:get('Monsters:'..bot_id.."group:link"..gpss[i])
 text233 = text233.."|"..i.."| ~⪼ "..gpss[i].."\n ~⪼ "..(link or  "لا يوجد رابط").."\n"
 end
-local f = io.open('TshAkE.txt', 'w')
+local f = io.open('Monsters.txt', 'w')
 f:write(text233)
 f:close()
-local tshakee = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
-local curl = 'curl "' .. tshakee .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'TshAkE.txt' .. '"'
+local Monsters = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
+local curl = 'curl "' .. Monsters .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'Monsters.txt' .. '"'
 io.popen(curl)
 end
 if text == 'تحديث' and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
-dofile('Tshake.lua')  
+dofile('Monsters.lua')  
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 end
 
 if text:match("^وضع وقت (%d+)$") then
 local a = {string.match(text, "^(وضع وقت) (%d+)$")}
 local time = a[2] * day
-database:setex( 'tshake:'..bot_id.."charge:"..msg.chat_id_,time,true)
-database:set( 'tshake:'..bot_id.."enable:"..msg.chat_id_,true)
+database:setex( 'Monsters:'..bot_id.."charge:"..msg.chat_id_,time,true)
+database:set( 'Monsters:'..bot_id.."enable:"..msg.chat_id_,true)
 send(msg.chat_id_, msg.id_, 1, '🔘┇تم وضع وقت انتهاء البوت *{'..a[2]..'}* يوم', 1, 'md')
 end--
 if text:match("^وقت المجموعه (-%d+)$") then
 local txt = {string.match(text, "^(وقت المجموعه) (-%d+)$")}
-local ex = database:ttl( 'tshake:'..bot_id.."charge:"..txt[2])
+local ex = database:ttl( 'Monsters:'..bot_id.."charge:"..txt[2])
 if ex == -1 then
 send(msg.chat_id_, msg.id_, 1, '🔘┇وقت المجموعه لا نهائي', 1, 'md')
 else
@@ -2737,20 +2737,20 @@ end
 if text:match("^مغادره (-%d+)$")  then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 local txt = {string.match(text, "^(مغادره) (-%d+)$")}
 send(msg.chat_id_, msg.id_, 1, '🔘┇المجموعه {'..txt[2]..'} تم الخروج منها', 1, 'md')
-database:del("thsake:gog"..bot_id,txt[2])
+database:del("Monsters:gog"..bot_id,txt[2])
 chat_leave(txt[2], bot_id)
 end
 if text:match('^المده1 (-%d+)$')  then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 local txt = {string.match(text, "^(المده1) (-%d+)$")}
@@ -2758,16 +2758,16 @@ local keko_info = nil
 function keko333(extra,result,success)
 keko_info = '@'..(result.username_ or 'لا يوجد')..''
 local timeplan1 = 2592000
-database:setex( 'tshake:'..bot_id.."charge:"..txt[2],timeplan1,true)
+database:setex( 'Monsters:'..bot_id.."charge:"..txt[2],timeplan1,true)
 send(msg.chat_id_, msg.id_, 1, '☑┇المجموعه ('..txt[2]..') تم اعادة تفعيلها المدة 30 يوم', 1, 'md')
 send(txt[2], 0, 1, '☑┇تم تفعيل مدة المجموعه 30 يوم', 1, 'md')
 for k,v in pairs(sudo_users) do
-function thsake_info(k1,k2)
+function Monsters_info(k1,k2)
 send(v, 0, 1, "🔘┇قام بتفعيل مجموعه المده كانت 30 يوم \n🎫┇ايدي المطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ "..keko_info.."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ┇اسم المجموعه ~⪼ ("..k2.title_..")" , 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
 end
-database:set( 'tshake:'..bot_id.."enable:"..txt[2],true)
+database:set( 'Monsters:'..bot_id.."enable:"..txt[2],true)
 end
 getUser(msg.sender_user_id_, keko333)
 end
@@ -2777,16 +2777,16 @@ local keko_info = nil
 function keko333(extra,result,success)
 keko_info = '@'..(result.username_ or 'لا يوجد')..''
 local timeplan2 = 7776000
-database:setex( 'tshake:'..bot_id.."charge:"..txt[2],timeplan2,true)
+database:setex( 'Monsters:'..bot_id.."charge:"..txt[2],timeplan2,true)
 send(msg.chat_id_, msg.id_, 1, '☑┇المجموعه ('..txt[2]..') تم اعادة تفعيلها المدة 90 يوم', 1, 'md')
 send(txt[2], 0, 1, '☑┇تم تفعيل مدة المجموعه 90 يوم', 1, 'md')
 for k,v in pairs(sudo_users) do
-function thsake_info(k1,k2)
+function Monsters_info(k1,k2)
 send(v, 0, 1, "🔘┇قام بتفعيل مجموعه المده كانت 90 يوم \n🎫┇ايدي المطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ "..keko_info.."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ┇اسم المجموعه ~⪼ ("..k2.title_..")" , 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
 end
-database:set( 'tshake:'..bot_id.."enable:"..txt[2],true)
+database:set( 'Monsters:'..bot_id.."enable:"..txt[2],true)
 end
 getUser(msg.sender_user_id_, keko333)
 end
@@ -2795,16 +2795,16 @@ local txt = {string.match(text, "^(المده3) (-%d+)$")}
 local keko_info = nil
 function keko333(extra,result,success)
 keko_info = '@'..(result.username_ or 'لا يوجد')..''
-database:set( 'tshake:'..bot_id.."charge:"..txt[2],true)
+database:set( 'Monsters:'..bot_id.."charge:"..txt[2],true)
 send(msg.chat_id_, msg.id_, 1, '☑┇المجموعه ('..txt[2]..') تم اعادة تفعيلها المدة لا نهائية', 1, 'md')
 send(txt[2], 0, 1, '☑┇تم تفعيل مدة المجموعه لا نهائية', 1, 'md')
 for k,v in pairs(sudo_users) do
-function thsake_info(k1,k2)
+function Monsters_info(k1,k2)
 send(v, 0, 1, "🔘┇قام بتفعيل مجموعه المده كانت لا نهائية \n🎫┇ايدي المطور ~⪼ ("..msg.sender_user_id_..")\n📜┇معرف المطور ~⪼ "..keko_info.."\n🌐┇معلومات المجموعه \n\n🎫┇ايدي المجموعه ~⪼ ("..msg.chat_id_..")\nⓂ┇اسم المجموعه ~⪼ ("..k2.title_..")" , 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
 end
-database:set( 'tshake:'..bot_id.."enable:"..txt[2],true)
+database:set( 'Monsters:'..bot_id.."enable:"..txt[2],true)
 end
 getUser(msg.sender_user_id_, keko333)
 end
@@ -2818,8 +2818,8 @@ end
 if (text and text == 'تعطيل الانلاين') then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 
 database:del('key_ts'..bot_id)
@@ -2857,11 +2857,11 @@ end
 end
 end -- end function sudo
 
-function tshake_run_file(data)
-local files_tshake = database:smembers("files"..bot_id)
-for i=1,#files_tshake do
-local tshakeee = dofile("files_tshake/"..files_tshake[i])
-local kt = tshakeee.keko_tshake(data)
+function Monsters_run_file(data)
+local files_Monsters = database:smembers("files"..bot_id)
+for i=1,#files_Monsters do
+local Monsters = dofile("files_Monsters/"..files_Monsters[i])
+local kt = Monsters.keko_Monsters(data)
 if kt == 'end' then
 return false
 end
@@ -2871,7 +2871,7 @@ end
 function TSall(msg,data)
 text = msg.content_.text_
 if msg.content_.photo_ then
-local photo = database:get('tshake:'..bot_id..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
+local photo = database:get('Monsters:'..bot_id..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
 if photo then
 local idPh = nil
 if msg.content_.photo_.sizes_[0] then
@@ -2888,7 +2888,7 @@ idPh = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 setphoto(msg.chat_id_, idPh)
 send(msg.chat_id_, msg.id_, 1, '🎴┇ تم وضع صوره للمجموعة ', 1, 'md')
-database:del('tshake:'..bot_id..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
+database:del('Monsters:'..bot_id..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_)
 end end
 local d = data.disable_notification_
 local chat = chats[msg.chat_id_]
@@ -2902,9 +2902,9 @@ end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,get_mymsg_contact)
 return false
 end
-if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
-if database:get( 'tshake:'..bot_id.."enable:"..msg.chat_id_) then
-database:del( 'tshake:'..bot_id.."enable:"..msg.chat_id_)
+if not database:get( 'Monsters:'..bot_id.."charge:"..msg.chat_id_) then
+if database:get( 'Monsters:'..bot_id.."enable:"..msg.chat_id_) then
+database:del( 'Monsters:'..bot_id.."enable:"..msg.chat_id_)
 for k,v in pairs(sudo_users) do
 end
 end
@@ -2912,26 +2912,26 @@ end
 if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
 if id:match('-100(%d+)') then
-if not database:sismember( 'tshake:'..bot_id.."groups",msg.chat_id_) then
-database:sadd( 'tshake:'..bot_id.."groups",msg.chat_id_)
+if not database:sismember( 'Monsters:'..bot_id.."groups",msg.chat_id_) then
+database:sadd( 'Monsters:'..bot_id.."groups",msg.chat_id_)
 end
 elseif id:match('^(%d+)') then
-database:sadd('tshake:'..bot_id.."userss",msg.chat_id_)
+database:sadd('Monsters:'..bot_id.."userss",msg.chat_id_)
 else
-if not database:sismember( 'tshake:'..bot_id.."groups",msg.chat_id_) then
-database:sadd( 'tshake:'..bot_id.."groups",msg.chat_id_)
+if not database:sismember( 'Monsters:'..bot_id.."groups",msg.chat_id_) then
+database:sadd( 'Monsters:'..bot_id.."groups",msg.chat_id_)
 end
 end
 end
 
-database:incr('tshake:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
-if database:get('tshake:'..bot_id..'viewget'..msg.sender_user_id_) then
+database:incr('Monsters:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
+if database:get('Monsters:'..bot_id..'viewget'..msg.sender_user_id_) then
 if not msg.forward_info_ then
 send(msg.chat_id_, msg.id_, 1, '❕┇قم بارسال المنشور من القناة', 1, 'md')
-database:del('tshake:'..bot_id..'viewget'..msg.sender_user_id_)
+database:del('Monsters:'..bot_id..'viewget'..msg.sender_user_id_)
 else
 send(msg.chat_id_, msg.id_, 1, '📊┇عدد المشاهدات ~⪼ <b>('..msg.views_..')</b> ', 1, 'html')
-database:del('tshake:'..bot_id..'viewget'..msg.sender_user_id_)
+database:del('Monsters:'..bot_id..'viewget'..msg.sender_user_id_)
 end
 end
 if msg.content_.members_ then
@@ -2942,24 +2942,24 @@ end
 end
 if (text and (is_creator(msg) or is_creatorbasic(msg))) then
 if text:match("اضف امر (.*)") then 
-local tshake_edis = {string.match(text, "^اضف امر (.*)$")}
+local Monsters_edis = {string.match(text, "^اضف امر (.*)$")}
 send(msg.chat_id_, msg.id_, 1, "☑┇ ارسال الان الامر الجديد", 1, 'md')
-database:set("tsahke:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id,tshake_edis[1])
-elseif (database:get("tsahke:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id)) then 
+database:set("Monsters:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id,Monsters_edis[1])
+elseif (database:get("Monsters:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id)) then 
 send(msg.chat_id_, msg.id_, 1, "☑┇ تم الحفظ بنجاح", 1, 'md')
-database:set("tshake:edit:text:su:new:"..bot_id..msg.chat_id_..database:get("tsahke:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id),text)
-database:set("tshake:edit:text:su:new2:"..bot_id..msg.chat_id_..text,database:get("tsahke:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id))
-database:del("tsahke:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id)
+database:set("Monsters:edit:text:su:new:"..bot_id..msg.chat_id_..database:get("Monsters:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id),text)
+database:set("Monsters:edit:text:su:new2:"..bot_id..msg.chat_id_..text,database:get("Monsters:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id))
+database:del("Monsters:new:msg:"..msg.chat_id_..msg.sender_user_id_..bot_id)
 end  
 if (text and text == 'مسح امر المطور بالكليشه') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
-redis:del('tshake:'..bot_id..'text_sudo', text)
+redis:del('Monsters:'..bot_id..'text_sudo', text)
 send(msg.chat_id_, msg.id_, 1, '☑┇تم حذف الكليشه ', 1, 'html')
-return "tshake"
+return "Monsters"
 end
 if text:match("^مسح امر (.*)") then 
 local t = {string.match(text, "^مسح امر (.*)$")}
-database:del("tshake:edit:text:su:new2:"..bot_id..msg.chat_id_..database:get("tshake:edit:text:su:new:"..bot_id..msg.chat_id_..t[1]))
-database:del("tshake:edit:text:su:new:"..bot_id..msg.chat_id_..t[1])
+database:del("Monsters:edit:text:su:new2:"..bot_id..msg.chat_id_..database:get("Monsters:edit:text:su:new:"..bot_id..msg.chat_id_..t[1]))
+database:del("Monsters:edit:text:su:new:"..bot_id..msg.chat_id_..t[1])
 send(msg.chat_id_, msg.id_, 1, "☑┇ تم المسح بنجاح", 1, 'md')
 end
 end
@@ -2967,12 +2967,12 @@ end
 if text == "رفع منشئ" and is_creatorbasic(msg) and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 function setcreator_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'creator:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
 tsX000("prore",msg,"🔖┇تم بالفعل رفعة منشئ  في البوت")
 else
@@ -2985,21 +2985,21 @@ end
 if text:match("^رفع منشئ @(.*)$") and is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
 
 local apow = {string.match(text, "^(رفع منشئ) @(.*)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 
 function setcreator_by_username(extra, result, success)
 if result.id_ then
-database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apow[2] or 'TSHAKETEAM')..')\n🔖┇تم رفعة منشئ  في البوت'
+database:sadd('Monsters:'..bot_id..'creator:'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apow[2] or 'Mons_bot')..')\n🔖┇تم رفعة منشئ  في البوت'
 else
 texts = '✖┇خطاء'
 end
@@ -3010,23 +3010,23 @@ end
 if text:match("^رفع منشئ (%d+)$") and is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')    
 return false end
 
 local apow = {string.match(text, "^(رفع منشئ) (%d+)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
 
-database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, apow[2])
+database:sadd('Monsters:'..bot_id..'creator:'..msg.chat_id_, apow[2])
 tsX000(apow[2],msg,"🔖┇تم رفعة منشئ  في البوت")
 end
 if text:match("^تنزيل منشئ$") and is_creatorbasic(msg) and msg.reply_to_message_id_ then
 function decreator_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'creator:'..msg.chat_id_
 if not database:sismember(hash, result.sender_user_id_) then
 tsX000("prore",msg,"🔰┇بالفعل تم تنزيله من منشئين المجموعه")
 else
@@ -3038,11 +3038,11 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,decreator_by_reply)
 end
 if text:match("^تنزيل منشئ @(.*)$") and is_creatorbasic(msg) then
 local apow = {string.match(text, "^(تنزيل منشئ) @(.*)$")}
-local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'creator:'..msg.chat_id_
 function remcreator_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apow[2] or 'TSHAKETEAM')..')\n🔰┇تم تنزيله من منشئين المجموعه'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apow[2] or 'Mons_bot')..')\n🔰┇تم تنزيله من منشئين المجموعه'
 else
 texts = '✖┇خطاء'
 end
@@ -3051,13 +3051,13 @@ end
 resolve_username(apow[2],remcreator_by_username)
 end
 if text:match("^تنزيل منشئ (%d+)$") and is_creatorbasic(msg) then
-local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'creator:'..msg.chat_id_
 local apow = {string.match(text, "^(تنزيل منشئ) (%d+)$")}
 database:srem(hash, apow[2])
 tsX000(apow[2],msg,"🔰┇تم تنزيله من منشئين المجموعه")
 end--
 if text == 'المنشئين الاساسين' and is_sudo(msg) then
-local list = database:smembers('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
+local list = database:smembers('Monsters:'..bot_id..'creatorbasic:'..msg.chat_id_)
 if #list == 0 then
 text = "❗️┇ لا يوجد منشئين اساسين "
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
@@ -3065,7 +3065,7 @@ return false
 end
 text = "🛅┇قائمة المنشئين الاساسيين ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
 for k,v in pairs(list) do
-local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+local user_info = database:hgetall('Monsters:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
 text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
@@ -3078,11 +3078,11 @@ return false
 end
 
 if text == ("المنشئين") and is_creatorbasic(msg) then
-local hash =   'tshake:'..bot_id..'creator:'..msg.chat_id_
+local hash =   'Monsters:'..bot_id..'creator:'..msg.chat_id_
 local list = database:smembers(hash)
 text = "🛅┇قائمة المنشئين  ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
 for k,v in pairs(list) do
-local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+local user_info = database:hgetall('Monsters:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
 text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
@@ -3103,14 +3103,14 @@ end
 if text:match("^رفع ادمن بالكروب (%d+)$") and  is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
 local apmd = {string.match(text, "^(رفع ادمن بالكروب) (%d+)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..apmd[2].."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
 tsX000(apmd[2],msg,'🔖┇تم رفعة ادمن   في الكروب')
@@ -3119,8 +3119,8 @@ end
 if text:match("^رفع ادمن بالكروب$")  and is_creatorbasic(msg) and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
@@ -3132,14 +3132,14 @@ end
 if text:match("^رفع ادمن بالكروب @(.*)$") and is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')      
 return false end
 local apmd = {string.match(text, "^(رفع ادمن بالكروب) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔖┇تم رفعة ادمن   في الكروب  '
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔖┇تم رفعة ادمن   في الكروب  '
 else
 texts = '✖┇خطاء'
 end
@@ -3153,14 +3153,14 @@ end
 if text:match("^رفع منشئ بالكروب (%d+)$") and  is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 local apmd = {string.match(text, "^(رفع منشئ بالكروب) (%d+)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..apmd[2].."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
 tsX000(apmd[2],msg,'🔖┇تم رفعة منشئ   في الكروب')
@@ -3169,8 +3169,8 @@ end
 if text:match("^رفع منشئ بالكروب$")  and is_creatorbasic(msg) and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
@@ -3182,14 +3182,14 @@ end
 if text:match("^رفع منشئ بالكروب @(.*)$") and is_creatorbasic(msg) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
 local apmd = {string.match(text, "^(رفع منشئ بالكروب) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔖┇تم رفعة منشئ   في الكروب'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔖┇تم رفعة منشئ   في الكروب'
 else
 texts = '✖┇خطاء'
 end
@@ -3218,7 +3218,7 @@ local apmd = {string.match(text, "^(تنزيل ادمن بالكروب) @(.*)$")
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔰┇تم تنزيله ادمن   في الكروب'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔰┇تم تنزيله ادمن   في الكروب'
 else
 texts = '✖┇خطاء'
 end
@@ -3248,7 +3248,7 @@ local apmd = {string.match(text, "^(تنزيل منشئ بالكروب) @(.*)$")
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔰┇تم تنزيله منشئ   في الكروب'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔰┇تم تنزيله منشئ   في الكروب'
 else
 texts = '✖┇خطاء'
 end
@@ -3261,15 +3261,15 @@ end
 if text:match("^رفع ادمن$")  and (is_owner(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')     
 return false end
-if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+if not is_creator(msg) and database:get('Monsters:'..bot_id.."Monsters:lock:set"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
 return false
 end
 function promote_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'mods:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
 tsX000("prore",msg,'🔖┇بالفعل تم رفعة ادمن   في البوت ')
 else
@@ -3283,18 +3283,18 @@ end
 if text:match("^رفع ادمن @(.*)$") and (is_owner(msg) or is_creatorbasic(msg)) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
-if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+if not is_creator(msg) and database:get('Monsters:'..bot_id.."Monsters:lock:set"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
 return false
 end
 local apmd = {string.match(text, "^(رفع ادمن) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
-database:sadd('tshake:'..bot_id..'mods:'..msg.chat_id_, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔖┇تم رفعة ادمن   في البوت'
+database:sadd('Monsters:'..bot_id..'mods:'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔖┇تم رفعة ادمن   في البوت'
 else
 texts = '✖┇خطاء'
 end
@@ -3306,25 +3306,25 @@ end
 if text:match("^رفع ادمن (%d+)$") and (is_owner(msg) or is_creatorbasic(msg)) then
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
-if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+if not is_creator(msg) and database:get('Monsters:'..bot_id.."Monsters:lock:set"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
 return false end
 local apmd = {string.match(text, "^(رفع ادمن) (%d+)$")}
 local url , res = https.request('https://teamstorm.tk/joinch/?id='..msg.sender_user_id_..'')
 data = JSON.decode(url)
-if data.Ch_Member.TshAkE ~= true then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
+if data.Ch_Member.Monsters ~= true then
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🇮🇶 •\n• اذا اردت استخدام بوتنا 😎 •\n• عليك الاشتراك في القناة 🔽 •\n• @Mons_bot ⚜️\n', 1, 'html')   
 return false end
-database:sadd('tshake:'..bot_id..'mods:'..msg.chat_id_, apmd[2])
+database:sadd('Monsters:'..bot_id..'mods:'..msg.chat_id_, apmd[2])
 tsX000(apmd[2],msg,"🔖┇تم رفعة ادمن   في البوت")
 return false
 end
 if text:match("^تنزيل ادمن$") and (is_owner(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 function demote_by_reply(extra, result, success)
-local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'mods:'..msg.chat_id_
 if not database:sismember(hash, result.sender_user_id_) then
 tsX000("prore",msg,"🔰┇بالفعل تم تنزيله من ادمنيه البوت")
 else
@@ -3336,12 +3336,12 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,demote_by_reply)
 return false
 end
 if text:match("^تنزيل ادمن @(.*)$") and (is_owner(msg) or is_creatorbasic(msg)) then
-local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'mods:'..msg.chat_id_
 local apmd = {string.match(text, "^(تنزيل ادمن) @(.*)$")}
 function demote_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n🔰┇تم تنزيله من ادمنيه البوت'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'Mons_bot')..')\n🔰┇تم تنزيله من ادمنيه البوت'
 else
 texts = '✖┇خطاء'
 end
@@ -3351,7 +3351,7 @@ resolve_username(apmd[2],demote_by_username)
 return false
 end
 if text:match("^تنزيل ادمن (%d+)$") and (is_owner(msg) or is_creatorbasic(msg)) then
-local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
+local hash =  'Monsters:'..bot_id..'mods:'..msg.chat_id_
 local apmd = {string.match(text, "^(تنزيل ادمن) (%d+)$")}
 database:srem(hash, apmd[2])
 tsX000(apmd[2],msg,"🔰┇تم تنزيله من ادمنيه البوت")
