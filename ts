@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-cd Tshake
-screen -S Tshake -X kill
-screen -S Tshake ./TsAu
+cd Monsters
+screen -S Monsters -X kill
+screen -S Monsters ./TsAu
