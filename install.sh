@@ -219,7 +219,7 @@ reset
 echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [91%]     ««\e[0m"
 cd ..
-cd Tshake
+cd Monsters
 rm -rf "luarocks-2.2.2"
 reset
 echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
