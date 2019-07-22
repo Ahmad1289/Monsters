@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd Monsters
+cd monsters
 echo -e "\e[33m          _____ ____  _   _    _    _  _______\e[0m"
 echo -e "\e[33m          / ____|\e[0m"
 echo -e "\e[33m           _|\e[0m"
