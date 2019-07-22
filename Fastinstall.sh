@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 sudo ls
-cd Monsters
+cd monsters
 chmod +x tg
 chmod +x ts
 chmod +x TsAu
