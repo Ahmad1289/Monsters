@@ -50,7 +50,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (TM) 2018 **TshAkE**
+Copyright (TM) 2018 **Monsters**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
