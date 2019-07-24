@@ -50,7 +50,7 @@ echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [11%]     ««\e[0m"
 sudo apt-get install libevent-dev   -y
 reset
-echo -e "\e[38;5;77m     »»     Welcome to Monsters Monsters     ««\e[0m"
+echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [12%]     ««\e[0m"
 sudo apt-get install make  -y
 reset
@@ -80,7 +80,7 @@ echo -e "\e[38;5;77m       »»     Install Monsters [17%]     ««\e[0m"
 sudo apt-get install libpython-dev   -y
 sudo luarocks install ansicolors -y
 reset
-echo -e "\e[38;5;77m     »»     Welcome to install Tshake     ««\e[0m"
+echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [18%]     ««\e[0m"
 sudo apt-get install expat  -y
 reset
@@ -228,7 +228,7 @@ sudo apt-get install libexpat1-dev  -y
 reset
 echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [100%]     ««\e[0m"
-echo -e "\27[34m     »»     Monsters Channel ; @mons_bot     ««\e[0m"
+echo -e "\27[34m     »»     Monsters Channel ; @MonstersTeam     ««\e[0m"
 chmod +x tg
 chmod +x ts
 chmod +x TsAu
