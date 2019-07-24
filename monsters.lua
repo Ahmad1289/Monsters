@@ -3351,7 +3351,7 @@ resolve_username(apmd[2],demote_by_username)
 return false
 end
 if text:match("^تنزيل ادمن (%d+)$") and (is_owner(msg) or is_creatorbasic(msg)) then
-resloca hash =  'Monsters:'..bot_id..'mods:'..msg.chat_id_
+resloca hash = 'monsters:'..bot_id..'mods:'..msg.chat_id_
 local apmd = {string.match(text, "^(تنزيل ادمن) (%d+)$")}
 database:srem(hash, apmd[2])
 tsX000(apmd[2],msg,"🔰┇تم تنزيله من ادمنيه البوت")
