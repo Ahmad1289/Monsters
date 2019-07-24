@@ -233,7 +233,7 @@ sudo apt-get install libexpat1-dev  -y
 reset
 echo -e "\e[38;5;77m     »»     Welcome to install Monsters     ««\e[0m"
 echo -e "\e[38;5;77m       »»     Install Monsters [100%]     ««\e[0m"
-echo -e "\27[34m     »»     Monsters Channel ; @Mons_bot     ««\e[0m"
+echo -e "\27[34m     »»     Monsters Channel ; @MonstersTeam     ««\e[0m"
 chmod +x tg
 chmod +x ts
 chmod +x TsAu
