@@ -7,7 +7,7 @@ monsters_on = {string.match(monsters_dev:read('*all'), "^(.*)/(%d+)")}
 local monsters_file = io.open("sudo.lua", 'w')
 monsters_file:write("token = '" ..monsters_on[1].."'\n\nsudo_add = "..monsters_on[2].."" )
 monsters_file:close()
-https.request("https://api.telegram.org/bot"..monsters_on[1].."/sendMessage?chat_id="..monsters_on[2].."&text=Bot_Tshake_is_start_new")
+https.request("https://api.telegram.org/bot"..monsters_on[1].."/sendMessage?chat_id="..monsters_on[2].."&text=Bot_monsters_is_start_new")
 os.execute('cd .. && rm -rf .telegram-cli')
 os.execute('rm -rf monsters_online.lua')  
 os.execute('./tg -s ./monsters.lua $@ --bot='..monsters_on[1])
