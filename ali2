@@ -374,7 +374,7 @@ io.popen("rm -fr files_monsters/"..name_t[2]..'.lua')
 send(msg.chat_id_, msg.id_, 1, ts23kk, 1, 'html')
 return false 
 end
-if (f:match('^(.*)(Tshake.lua)(.*)$')) then 
+if (f:match('^(.*)(monsters.lua)(.*)$')) then 
 ts23kk =  "\n⚠┇لا استطيع رفع ملف يحتوي على دومين الفروخ \n \n دباي "
 database:srem("files"..bot_id,name_t[2]..'.lua')
 io.popen("rm -fr files_monsters/"..name_t[2]..'.lua')
@@ -797,16 +797,16 @@ return false
 end
 ------------------------------------------------------------------------
 if text == 'تحديث' then
-dofile('Tshake.lua')  
+dofile('monsters.lua')  
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 end
 if text == ("تحديث السورس") then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
-os.execute('rm -rfmonsters.lua')
-os.execute('cd libs;wget https://raw.githubusercontent.com/monstersabas/Tshake/master/libs/utils.lua')
-os.execute('wget https://raw.githubusercontent.com/monstersabas/Tshake/master/Tshake.lua')
-dofile('Tshake.lua')  
+os.execute('rm -rf monsters.lua')
+os.execute('cd libs;wget https://raw.githubusercontent.com/Ahmad1289/Monsters/master/libs/utils.lua')
+os.execute('wget https://raw.githubusercontent.com/Ahmad1289/Monsters/master/monsters.lua')
+dofile('monsters.lua')  
 return false
 end
 
