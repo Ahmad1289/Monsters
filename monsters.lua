@@ -723,10 +723,10 @@ local function sendSticker(chat_id, reply_to_message_id, disable_notification, f
 local input_message_content = {    ID = "InputMessageSticker",   sticker_ = getInputFile(sticker),    width_ = 0,    height_ = 0  } sendRequest('SendMessage', chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, cb, cmd) 
 end
 
-functionmonsters_run_file(data)
+function monsters_run_file(data)
 local files_monsters = database:smembers("files"..bot_id)
 for i=1,#files_monsters do
-localmonstersee = dofile("files_monsters/"..files_monsters[i])
+local monstersee = dofile("files_monsters/"..files_monsters[i])
 local kt =monstersee.keko_monsters(data)
 if kt == 'end' then
 return false
