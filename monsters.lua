@@ -604,7 +604,7 @@ function keko333(extra,result,success)
 if result.first_name_ then
 if #result.first_name_ < 15 then 
 else
-formonsters_one in string.gmatch(result.first_name_, "[^%s]+") do
+for monsters_one in string.gmatch(result.first_name_, "[^%s]+") do
 result.first_name_ =monsters_one
 break
 end
