@@ -1120,7 +1120,7 @@ local animation_caption = (redis:get('monsters:'..bot_id.."addreply1:animation:c
 local voice_caption = (redis:get('monsters:'..bot_id.."addreply1:voice:caption:gp"..text..msg.chat_id_) or '' )
 ------------------------------------------------------------------------
 if text1 then 
-functionmonsters_re(t1,t2)
+function monsters_re(t1,t2)
 local tahna = (database:get('monsters:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_) or 0)
 local user_msgs = ((database:get('monsters:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_) or 0) + tahna)
 local edit = database:get('monsters:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
