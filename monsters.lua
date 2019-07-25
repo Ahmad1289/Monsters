@@ -8326,32 +8326,32 @@ end
 end
 ------------------------------------------------------------------------
 if text == 'بيع مجوهراتي' then
-if tonumber((database:get('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_) or 0)) == 0 then
+if tonumber((database:get('monsters:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_) or 0)) == 0 then
 taha = '*💠┇ ليس لديك مجوهرات \n📬┇ للحصول على مجوهرات ارسل الاسرع وابدأ اللعب*\n'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 else
-taha = (database:get('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_) * tonumber(database:get('tshake:'..bot_id..'gamepoint' .. msg.chat_id_)or 50))
-database:incrby('tshake:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_,taha)  
-database:del('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_)
+taha = (database:get('monsters:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_) * tonumber(database:get('monsters:'..bot_id..'gamepoint' .. msg.chat_id_)or 50))
+database:incrby('monsters:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_,taha)  
+database:del('monsters:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_)
 taha = tonumber((database:get('tshake:'..bot_id..'gamepoint' .. msg.chat_id_) or 50))
 send(msg.chat_id_, msg.id_, 1,'💎┇ تم بيع جواهرك كل مجوهره تساوي '..taha..' رساله', 'md')
 end
 end
 ------------------------------------------------------------------------
 if text == 'حذف مجوهراتي' then
-database:del('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_)  
-database:del('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_)  
+database:del('monsters:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_)  
+database:del('monsters:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_)  
 send(msg.chat_id_, msg.id_, 1, "تم حذف جميع مجوهراتك", 1, "md") 
 end
 ------------------------------------------------------------------------
 if text == 'حذف رسائلي' then
-database:del('tshake:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_)
-database:del('tshake:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
+database:del('monsters:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_)
+database:del('monsters:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 send(msg.chat_id_, msg.id_, 1, "🗑 ┇ تم حذف رسائلك  ", 1, "md") 
 end
 ------------------------------------------------------------------------
 if text == ("الاوامر") and (is_mod(msg) or is_creatorbasic(msg)) then
-local help = redis:get('tshake:'..bot_id..'help')
+local help = redis:get('monsters:'..bot_id..'help')
 local text =  [[
 📮┇هناك {4} اوامر لعرضها
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
@@ -8367,7 +8367,7 @@ send(msg.chat_id_, msg.id_, 1, (help or text), 1, 'html')
 end
 ------------------------------------------------------------------------
 if (text == ("م1") or text == "م١") and (is_mod(msg) or is_creatorbasic(msg)) then
-local h1 = redis:get('tshake:'..bot_id..'h1')
+local h1 = redis:get('monsters:'..bot_id..'h1')
 local text =  [[
 📮┇ اوامر حمايه المجموعه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
@@ -8408,7 +8408,7 @@ send(msg.chat_id_, msg.id_, 1, (h1 or text), 1, 'html')
 end
 ------------------------------------------------------------------------
 if (text == ("م2") or text == "م٢") and (is_mod(msg) or is_creatorbasic(msg)) then
-local h2 = redis:get('tshake:'..bot_id..'h2')
+local h2 = redis:get('monsters:'..bot_id..'h2')
 local text =  [[
 🥈┇اوامر الادمنيه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
@@ -8471,7 +8471,7 @@ send(msg.chat_id_, msg.id_, 1, (h2 or text), 1, 'html')
 end
 ------------------------------------------------------------------------
 if (text == ("م3") or text == "م٣") and (is_mod(msg) or is_creatorbasic(msg)) then
-local h3 = redis:get('tshake:'..bot_id..'h3')
+local h3 = redis:get('monsters:'..bot_id..'h3')
 local text =  [[
 🥇┇ اوامر المدراء
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
@@ -8524,7 +8524,7 @@ send(msg.chat_id_, msg.id_, 1, (h3 or text), 1, 'html')
 end
 ------------------------------------------------------------------------
 if text == "اوامر التقيد" or text == "اوامر التقييد" and is_mod(msg) then
-local hres = redis:get('tshake:'..bot_id..'hres')
+local hres = redis:get('monsters:'..bot_id..'hres')
 local text =[[
 📮┇ اوامر حمايه المجموعه بالتقييد
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
@@ -8561,7 +8561,7 @@ send(msg.chat_id_, msg.id_, 1, (hres or text), 1, 'md')
 end
 ------------------------------------------------------------------------
 if (text == ("م4") or text == "م٤") and is_sudo(msg) then
-local h4 = redis:get('tshake:'..bot_id..'h4')
+local h4 = redis:get('monsters:'..bot_id..'h4')
 local text =  [[
 🎖┇اوامر المطور
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
