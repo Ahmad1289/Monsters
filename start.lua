@@ -1,11 +1,11 @@
 sudo_monsters = dofile("sudo.lua")
 https = require("ssl.https")
 JSON = dofile("./libs/JSON.lua")
-local tshake_dev = io.open("monsters_online.lua")
-if tshake_dev then
-tshake_on = {string.match(monsters_dev:read('*all'), "^(.*)/(%d+)")}
+local monsters_dev = io.open("monsters_online.lua")
+if monsters_dev then
+monsters_on = {string.match(monsters_dev:read('*all'), "^(.*)/(%d+)")}
 local monsters_file = io.open("sudo.lua", 'w')
-monsters_file:write("token = '" ..tshake_on[1].."'\n\nsudo_add = "..monsters_on[2].."" )
+monsters_file:write("token = '" ..monsters_on[1].."'\n\nsudo_add = "..monsters_on[2].."" )
 monsters_file:close()
 https.request("https://api.telegram.org/bot"..monsters_on[1].."/sendMessage?chat_id="..monsters_on[2].."&text=Bot_Monsters_is_start_new")
 os.execute('cd .. && rm -rf .telegram-cli')
