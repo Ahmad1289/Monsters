@@ -735,7 +735,7 @@ end
 end
 
 
-functionmonsters_run_(msg,data)
+function monsters_run_(msg,data)
 local text = msg.content_.text_
 ------------------------------------------------------------------------
 
