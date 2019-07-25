@@ -2011,7 +2011,7 @@ send(msg.chat_id_, msg.id_, 1, '🎫┇الايدي ~⪼*('..msg.sender_user_id_
 msgm = msg.id_
 my_ide = msg.sender_user_id_
 local num = 500
-for i=1,tonumber(num) do)
+for i=1,tonumber(num) do
 tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
 if data.messages_[0] ~= false then
 if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
