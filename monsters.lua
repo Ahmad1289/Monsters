@@ -8651,9 +8651,9 @@ end
 function tdcli_update_callback(data)
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
-database:del( 'monsters:'..bot_id.."charge:"..'-100'..data.channel_.id_)
-database:srem("thsake:gog"..bot_id, '-100'..data.channel_.id_)
-database:sadd( 'monsters:'..bot_id.."groups",'-100'..data.channel_.id_)
+database:del('monsters:'..bot_id.."charge:"..'-100'..data.channel_.id_)
+database:srem("monsters:gog"..bot_id, '-100'..data.channel_.id_)
+database:sadd('monsters:'..bot_id.."groups",'-100'..data.channel_.id_)
 end
 end
 local chat = {}
