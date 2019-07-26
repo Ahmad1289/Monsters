@@ -8638,16 +8638,6 @@ local text =  [[
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 ------------------------------------------------------------------------
-if text == ("اريد رابط حذف") or text == ("رابط حذف") or text == ("رابط الحذف") or text == ("الرابط حذف") or text == ("اريد رابط الحذف") then
-local text =  [[
-🗑┇رابط حذف التلي ، ⬇
-‼┇احذف ولا ترجع عيش حياتك'
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-🔎┇<a href="https://telegram.org/deactivate">اضغط هنا للحذف الحساب" </a>
-]]
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
-end
-end
 function tdcli_update_callback(data)
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
